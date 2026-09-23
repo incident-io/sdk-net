@@ -1,0 +1,51 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <!-- Every supported LTS release. net8.0 leaves support in November 2026;
+         drop it with a major version, since removing a target framework
+         breaks consumers still on it. -->
+    <TargetFrameworks>net8.0;net10.0</TargetFrameworks>
+    <Nullable>enable</Nullable>
+    <LangVersion>latest</LangVersion>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+
+    <PackageId>IncidentIo</PackageId>
+    <!-- The release workflow passes the real version to dotnet pack. Nothing is
+         written back into this file, so there is nothing to commit per release. -->
+    <Version>0.0.0-dev</Version>
+    <!-- The User-Agent reads this version; Source Link would otherwise append
+         "+<commit>" to it. -->
+    <IncludeSourceRevisionInInformationalVersion>false</IncludeSourceRevisionInInformationalVersion>
+    <Authors>incident.io</Authors>
+    <Company>incident.io</Company>
+    <Copyright>Copyright (c) incident.io</Copyright>
+    <Description>Official .NET client for the incident.io API, generated from its published OpenAPI schema.</Description>
+    <PackageTags>incident.io;incident;incident-management;on-call;api;sdk</PackageTags>
+    <PackageProjectUrl>https://github.com/incident-io/sdk-net</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/incident-io/sdk-net</RepositoryUrl>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+
+    <!-- Checks the package on every pack. With a baseline version, which the
+         release workflow passes, it also fails on any change to the public API
+         that would break a consumer compiled against the last release. See
+         the api-compat target in the Makefile. -->
+    <EnablePackageValidation>true</EnablePackageValidation>
+    <!-- A suppression accepted for one release is unnecessary against the next
+         baseline, which already contains the change. Without this, that alone
+         fails package validation and wedges the release after it. -->
+    <ApiCompatPermitUnnecessarySuppressions>true</ApiCompatPermitUnnecessarySuppressions>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Kiota.Bundle" Version="2.1.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="../../README.md" Pack="true" PackagePath="/" />
+  </ItemGroup>
+
+</Project>

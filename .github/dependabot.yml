@@ -1,0 +1,28 @@
+# Nothing else updates dependencies. The release workflow never re-resolves
+# them, so without this the Kiota runtime and the test packages only move when
+# someone remembers.
+version: 2
+updates:
+  - package-ecosystem: nuget
+    directory: /
+    schedule:
+      interval: weekly
+    # One PR for everything, reviewed together.
+    groups:
+      nuget:
+        patterns: ["*"]
+    open-pull-requests-limit: 3
+    # The Kiota generator in .config/dotnet-tools.json is pinned deliberately and
+    # upgraded by hand: a new version reshapes the generated public API. See
+    # CONTRIBUTING.md.
+    ignore:
+      - dependency-name: microsoft.openapi.kiota
+
+  # The workflows pin every action by SHA, which nothing else can bump.
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: monthly
+    groups:
+      actions:
+        patterns: ["*"]

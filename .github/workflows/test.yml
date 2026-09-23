@@ -1,0 +1,47 @@
+name: test
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+
+env:
+  DOTNET_CLI_TELEMETRY_OPTOUT: "1"
+  DOTNET_NOLOGO: "1"
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      # The SDK version comes from global.json; the .NET 8 runtime is there
+      # because the tests run on every target framework.
+      - uses: actions/setup-dotnet@a98b56852c35b8e3190ac28c8c2271da59106c68 # v6.0.0
+        with:
+          global-json-file: global.json
+          dotnet-version: 8.0.x
+      # Builds with warnings as errors, packs, then runs the tests on net8.0
+      # and net10.0.
+      - run: make test
+
+  # Fail if the committed client is out of date with the committed schema — i.e.
+  # someone changed openapi.json or scripts/prepare_spec.py without re-running
+  # the generator. Regenerates from the committed schema, not the live one, so
+  # this stays a check on the commit rather than a second copy of the sync job.
+  generate-drift:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-dotnet@a98b56852c35b8e3190ac28c8c2271da59106c68 # v6.0.0
+        with:
+          global-json-file: global.json
+      - run: make generate
+      - name: Check for drift
+        run: |
+          # --porcelain, not `git diff --quiet`: the latter ignores untracked
+          # files, so a new model or endpoint would pass unnoticed.
+          if [ -n "$(git status --porcelain)" ]; then
+            echo "::error::Generated client is out of date. Run 'make generate' and commit the result."
+            git status --porcelain
+            exit 1
+          fi

@@ -1,0 +1,11 @@
+bin/
+obj/
+/artifacts/
+
+# The generator's input, rewritten from openapi.json by every make generate.
+# openapi.json is the committed source of truth.
+/build/
+
+# scripts/ runs under python3.
+__pycache__/
+*.pyc
