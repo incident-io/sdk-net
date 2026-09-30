@@ -37,30 +37,31 @@ runtime are added to it.
   changing anything in `scripts/`.
 - `make test`: build with warnings as errors, pack, then run the tests on
   net8.0 and net10.0. This is what CI runs.
-- `make oasdiff`: the schema gate that stops a release, runnable by hand.
-- `make api-compat`: the C# API gate that stops a release. Before the first
-  release there is no baseline on nuget.org, so it says so and passes.
+- `make oasdiff`: the schema gate that makes a release a major, runnable by
+  hand.
+- `make api-compat`: the C# API gate that makes a release a major. Before the
+  first release there is no baseline on nuget.org, so it says so and passes.
 
 ## How a release happens
 
 `.github/workflows/sync.yml`, hourly. When the live schema differs from the
-committed one it regenerates, verifies, bumps the **minor** version, commits,
-tags, and publishes to nuget.org. No human unless a gate trips.
+committed one it regenerates, verifies, bumps the version, commits, tags, and
+publishes to nuget.org. No human unless something fails.
 
-Two gates stop it. `oasdiff` compares the schemas, and .NET package validation
-(`make api-compat`) compares the C# API against the last published package.
-A halted run does **not** commit the new schema, so every later run sees the
-same diff and halts the same way until someone acts. That is deliberate, and
-why the issues are deduped.
+Two gates decide the version. `oasdiff` compares the schemas, and .NET package
+validation (`make api-compat`) compares the C# API against the last published
+package. If either reports a break, the release is a **major**, and its GitHub
+release notes start with what each gate found. Otherwise it is a **minor**.
 
-To release a breaking change, run the workflow from the Actions tab with
-**bump: major** and **acknowledge_breaking: true**. Both are required together.
+To force a major for a break neither gate sees, run the workflow from the
+Actions tab with **bump: major**. The default, **auto**, picks major or minor
+from the gates.
 
 The version is passed to `dotnet pack` on the command line. The `.csproj`
 holds `0.0.0-dev` and is never rewritten, so a release commit contains only
 `openapi.json` and the generated code.
 
-### When package validation stops a release
+### When package validation reports a binary-only break
 
 Kiota's output absorbs almost every additive schema change without breaking
 callers: models are classes with settable properties, and query parameters are
@@ -69,9 +70,11 @@ that had no query parameters gains its first, its method signature changes
 from `RequestConfiguration<DefaultQueryParameters>` to a new generated class.
 Source that calls it still compiles, but a library compiled against the old
 version gets `MissingMethodException`. Package validation reports it as
-`CP0002` and the release files a `release-stuck` issue.
+`CP0002`, and the release is a major.
 
-That is a binary break only, and not worth a major version. To accept it:
+That is a binary break only, and arguably not worth a major version. The sync
+releases it as a major on its next run unless a suppression is committed
+first. To accept it as a minor instead:
 
 ```bash
 make fetch
@@ -86,7 +89,7 @@ sees the schema change, regenerates, and releases it. Suppressions stay valid af
 `ApiCompatPermitUnnecessarySuppressions`.
 
 Anything else package validation reports, such as a removed type or member, is
-a real break: cut a major.
+a real break, and the release is a major without anyone acting.
 
 ### Why the schema is rewritten before generation
 
