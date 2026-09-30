@@ -6,8 +6,8 @@
 # new SDK brings new analyzers, and verify builds with -warnaserror, so an
 # unpinned SDK would halt the hourly release on the day it ships.
 
-# Pinned: oasdiff decides whether we publish at all. The release workflow gets
-# the binary from here too (make oasdiff-path), so this is the only pin.
+# Pinned: oasdiff decides whether a release is a major. The release workflow
+# reads this line rather than keeping a second copy.
 OASDIFF_VERSION := 1.32.1
 # Versioned: an unversioned path would keep serving a stale binary after
 # OASDIFF_VERSION is bumped.
@@ -36,7 +36,7 @@ BUILD_PROPS := -c Release -p:Version=$(VERSION) -p:ContinuousIntegrationBuild=tr
 .DELETE_ON_ERROR:
 
 .DEFAULT_GOAL := help
-.PHONY: help fetch check-schema generate verify test api-compat oasdiff oasdiff-path clean
+.PHONY: help fetch generate verify test api-compat oasdiff clean
 
 help:
 	@grep -E '^[a-z-]+:.*?## .*$$' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "  \033[36m%-12s\033[0m %s\n", $$1, $$2}'
@@ -48,17 +48,6 @@ OUT ?= openapi.json
 
 fetch: ## Fetch the live schema (OUT= to write elsewhere)
 	curl -sfSL $(SCHEMA_URL) -o $(OUT)
-	@$(MAKE) --no-print-directory check-schema FILE=$(OUT)
-
-# curl -f fails on an HTTP error but not on a 200 with an empty or truncated
-# body, and oasdiff reads an empty file as every path having been removed —
-# which it rates breaking, so the release would halt and file "Breaking API
-# change detected" over a bad proxy response.
-FILE ?= openapi.json
-
-check-schema: ## Fail unless FILE= holds a plausible schema
-	@python3 -c "import json, sys; paths = json.load(open('$(FILE)')).get('paths') or {}; \
-		sys.exit(f'$(FILE): only {len(paths)} paths, not a usable schema') if len(paths) < 100 else print(f'$(FILE): {len(paths)} paths')"
 
 generate: openapi.json ## Regenerate the client from the committed schema
 	dotnet tool restore
@@ -102,7 +91,8 @@ test: verify ## Everything verify does, plus the tests on every target framework
 # Before the first release there is nothing on nuget.org to compare against,
 # so this reports that and passes.
 #
-# To accept a reported break without a major version, run it with
+# A reported break makes the release a major. To accept one as a minor, run
+# it with
 # API_COMPAT_FLAGS=-p:ApiCompatGenerateSuppressionFile=true, which writes
 # src/IncidentIo/CompatibilitySuppressions.xml. See CONTRIBUTING.md.
 API_COMPAT_FLAGS ?=
@@ -121,18 +111,17 @@ api-compat: verify ## Compare the public API against the last published package
 	echo "Comparing against IncidentIo $$baseline"; \
 	dotnet pack $(PROJECT) $(BUILD_PROPS) --no-build -p:PackageValidationBaselineVersion=$$baseline $(API_COMPAT_FLAGS) -o /tmp/api-compat
 
-# The same gate the release runs, runnable by hand. The stuck-release issue
-# names it as a likely cause, so it needs a command beside the name.
+# The same gate the release runs, runnable by hand.
 oasdiff: $(OASDIFF) ## Diff the live schema against the committed one, as the release does
 	@$(MAKE) --no-print-directory fetch OUT=/tmp/openapi.json.new
+	# The same sanity check the release does before trusting the bytes. curl -f
+	# passes a 200 with an empty or truncated body, and oasdiff reads an empty
+	# file as every path having been removed — a full "everything is breaking"
+	# report over a bad proxy response.
+	@python3 -c "import json; d=json.load(open('/tmp/openapi.json.new')); n=len(d.get('paths') or {}); \
+		exit(0) if n >= 100 else exit(f'only {n} paths in the fetched schema')"
 	$(OASDIFF) breaking openapi.json /tmp/openapi.json.new \
 		--severity-levels oasdiff-severity.txt --fail-on ERR
-
-# For the release workflow, which needs oasdiff's own exit code (1 is
-# "breaking", anything else is "couldn't compare"), and make would turn both
-# into 2.
-oasdiff-path: $(OASDIFF)
-	@echo $(OASDIFF)
 
 $(OASDIFF):
 	curl -sfSL "https://github.com/oasdiff/oasdiff/releases/download/v$(OASDIFF_VERSION)/oasdiff_$(OASDIFF_VERSION)_$(OASDIFF_PLATFORM).tar.gz" \
