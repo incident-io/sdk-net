@@ -6,12 +6,9 @@ name: sync
 # Do not rename this file. nuget.org's trusted-publishing policy is registered
 # against the repo and this filename, so a rename breaks publishing silently.
 on:
-  # Disabled until the nuget.org trusted-publishing policy exists: without it
-  # the first schema change would tag and release, then fail at the publish
-  # step. Uncomment to start the hourly loop. Avoid minute 0, which is GitHub's
-  # most contended scheduling slot.
-  # schedule:
-  #   - cron: "29 * * * *" # hourly
+  # Avoid minute 0, which is GitHub's most contended scheduling slot.
+  schedule:
+    - cron: "29 * * * *" # hourly
   workflow_dispatch:
     inputs:
       # auto: major if oasdiff or package validation finds a break, otherwise
