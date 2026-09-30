@@ -11,6 +11,7 @@ using IncidentIo.V1.IncidentMemberships;
 using IncidentIo.V1.IncidentRelationships;
 using IncidentIo.V1.IncidentRoles;
 using IncidentIo.V1.IncidentStatuses;
+using IncidentIo.V1.IncidentTeamMemberships;
 using IncidentIo.V1.IncidentTemplates;
 using IncidentIo.V1.IncidentTypes;
 using IncidentIo.V1.Incidents;
@@ -89,6 +90,11 @@ namespace IncidentIo.V1
         public global::IncidentIo.V1.IncidentStatuses.IncidentStatusesRequestBuilder IncidentStatuses
         {
             get => new global::IncidentIo.V1.IncidentStatuses.IncidentStatusesRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The incident_team_memberships property</summary>
+        public global::IncidentIo.V1.IncidentTeamMemberships.IncidentTeamMembershipsRequestBuilder IncidentTeamMemberships
+        {
+            get => new global::IncidentIo.V1.IncidentTeamMemberships.IncidentTeamMembershipsRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>The incident_templates property</summary>
         public global::IncidentIo.V1.IncidentTemplates.IncidentTemplatesRequestBuilder IncidentTemplates
