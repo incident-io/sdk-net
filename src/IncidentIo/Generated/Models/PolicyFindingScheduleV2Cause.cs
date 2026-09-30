@@ -19,5 +19,9 @@ namespace IncidentIo.Models
         #pragma warning disable CS1591
         UserDeactivated,
         #pragma warning restore CS1591
+        [EnumMember(Value = "notifications_paused")]
+        #pragma warning disable CS1591
+        NotificationsPaused,
+        #pragma warning restore CS1591
     }
 }

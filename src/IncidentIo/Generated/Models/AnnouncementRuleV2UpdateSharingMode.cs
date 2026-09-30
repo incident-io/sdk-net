@@ -3,21 +3,21 @@ using System.Runtime.Serialization;
 using System;
 namespace IncidentIo.Models
 {
-    /// <summary>Why this user&apos;s entries don&apos;t count as cover</summary>
+    /// <summary>Where incident updates are shared once the incident is announced</summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    public enum PolicyFindingScheduleImpactedUserV2Cause
+    public enum AnnouncementRuleV2UpdateSharingMode
     {
-        [EnumMember(Value = "no_on_call_seat")]
+        [EnumMember(Value = "none")]
         #pragma warning disable CS1591
-        NoOnCallSeat,
+        None,
         #pragma warning restore CS1591
-        [EnumMember(Value = "user_deactivated")]
+        [EnumMember(Value = "thread")]
         #pragma warning disable CS1591
-        UserDeactivated,
+        Thread,
         #pragma warning restore CS1591
-        [EnumMember(Value = "notifications_paused")]
+        [EnumMember(Value = "thread_and_channel")]
         #pragma warning disable CS1591
-        NotificationsPaused,
+        ThreadAndChannel,
         #pragma warning restore CS1591
     }
 }

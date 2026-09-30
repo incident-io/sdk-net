@@ -8,7 +8,7 @@ using System;
 namespace IncidentIo.Models
 {
     /// <summary>
-    /// A single shift on a schedule, representing who is on-call between a startand end time. When present, `rotation_id` and `layer_id` tell you whichrotation and which layer within that rotation the entry belongs to. Aschedule may have multiple rotations (for example, a primary and a secondaryrotation) and each rotation can be made up of several layers — entries arereturned for every rotation and layer on the schedule.Entries come from two places: they are either generated from a schedule&apos;srotation configuration (the regular pattern of who is on-call) or created byan override (a one-off change that replaces the normal rotation for a periodof time). When you call the List schedule entries endpoint we return bothkinds separately, along with the merged `final` schedule that reflects whatwill actually happen.`entry_id` is only populated for entries that correspond to a storedrecord. Scheduled entries are projections computed from the rotation ruleson the fly and don&apos;t have a persisted ID, so `entry_id` will be absent forthose. Use `fingerprint` if you need a stable identifier to deduplicate ordiff a shift across requests.
+    /// A single shift on a schedule, representing who is on-call between a startand end time. When present, `rotation_id` tells you which rotation theentry belongs to. A schedule may have multiple rotations (for example, aprimary and a secondary rotation) and each rotation can be made up of severallayers — entries are returned for every rotation and layer on the schedule.Entries come from two places: they are either generated from a schedule&apos;srotation configuration (the regular pattern of who is on-call) or created byan override (a one-off change that replaces the normal rotation for a periodof time). When you call the List schedule entries endpoint we return bothkinds separately, along with the merged `final` schedule that reflects whatwill actually happen.`entry_id` is only populated for entries that correspond to a storedrecord. Scheduled entries are projections computed from the rotation ruleson the fly and don&apos;t have a persisted ID, so `entry_id` will be absent forthose. Use `fingerprint` if you need a stable identifier to deduplicate ordiff a shift across requests.
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class ScheduleEntryV2 : IAdditionalDataHolder, IParsable
@@ -32,14 +32,6 @@ namespace IncidentIo.Models
 #nullable restore
 #else
         public string Fingerprint { get; set; }
-#endif
-        /// <summary>If present, the layer this entry applies to on the rotation</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? LayerId { get; set; }
-#nullable restore
-#else
-        public string LayerId { get; set; }
 #endif
         /// <summary>If present, the rotation this entry applies to on the schedule</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -87,7 +79,6 @@ namespace IncidentIo.Models
                 { "end_at", n => { EndAt = n.GetDateTimeOffsetValue(); } },
                 { "entry_id", n => { EntryId = n.GetStringValue(); } },
                 { "fingerprint", n => { Fingerprint = n.GetStringValue(); } },
-                { "layer_id", n => { LayerId = n.GetStringValue(); } },
                 { "rotation_id", n => { RotationId = n.GetStringValue(); } },
                 { "start_at", n => { StartAt = n.GetDateTimeOffsetValue(); } },
                 { "user", n => { User = n.GetObjectValue<global::IncidentIo.Models.UserV2>(global::IncidentIo.Models.UserV2.CreateFromDiscriminatorValue); } },
@@ -103,7 +94,6 @@ namespace IncidentIo.Models
             writer.WriteDateTimeOffsetValue("end_at", EndAt);
             writer.WriteStringValue("entry_id", EntryId);
             writer.WriteStringValue("fingerprint", Fingerprint);
-            writer.WriteStringValue("layer_id", LayerId);
             writer.WriteStringValue("rotation_id", RotationId);
             writer.WriteDateTimeOffsetValue("start_at", StartAt);
             writer.WriteObjectValue<global::IncidentIo.Models.UserV2>("user", User);

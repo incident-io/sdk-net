@@ -7,6 +7,8 @@ using IncidentIo.V2.AlertRoutes;
 using IncidentIo.V2.AlertSources;
 using IncidentIo.V2.AlertTags;
 using IncidentIo.V2.Alerts;
+using IncidentIo.V2.AnnouncementRules;
+using IncidentIo.V2.AnnouncementTemplates;
 using IncidentIo.V2.CallRoutes;
 using IncidentIo.V2.CallSessions;
 using IncidentIo.V2.CallTranscriptEntries;
@@ -96,6 +98,16 @@ namespace IncidentIo.V2
         public global::IncidentIo.V2.Alerts.AlertsRequestBuilder Alerts
         {
             get => new global::IncidentIo.V2.Alerts.AlertsRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The announcement_rules property</summary>
+        public global::IncidentIo.V2.AnnouncementRules.AnnouncementRulesRequestBuilder AnnouncementRules
+        {
+            get => new global::IncidentIo.V2.AnnouncementRules.AnnouncementRulesRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The announcement_templates property</summary>
+        public global::IncidentIo.V2.AnnouncementTemplates.AnnouncementTemplatesRequestBuilder AnnouncementTemplates
+        {
+            get => new global::IncidentIo.V2.AnnouncementTemplates.AnnouncementTemplatesRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>The call_routes property</summary>
         public global::IncidentIo.V2.CallRoutes.CallRoutesRequestBuilder CallRoutes
