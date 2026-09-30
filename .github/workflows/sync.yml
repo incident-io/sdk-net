@@ -315,8 +315,8 @@ jobs:
         id: nuget
         with:
           # The nuget.org account that owns the trusted-publishing policy. Its
-          # profile name, not an email address.
-          user: ${{ secrets.NUGET_USER }}
+          # profile name, not an email address. Public, so not a secret.
+          user: incident-io
 
       # Pushes the .snupkg symbols package beside it automatically.
       - name: Publish to nuget.org
@@ -421,7 +421,7 @@ jobs:
 
           Run: $GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID
 
-          Likely causes: the nuget.org trusted-publishing policy is missing or doesn't name this repo and \`sync.yml\`, the \`NUGET_USER\` secret is unset, the token exchange failed, or nuget.org was down."
+          Likely causes: the nuget.org trusted-publishing policy is missing or doesn't name this repo and \`sync.yml\`, the token exchange failed, or nuget.org was down."
           else
             title="Release is stuck — regeneration or verification is failing"
             body="The hourly sync failed after detecting a schema change, before committing anything. The next run will see the same diff and fail the same way, so this repeats hourly until someone looks.

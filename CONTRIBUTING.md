@@ -127,21 +127,21 @@ the first release is a breaking change.
 
 ## First release checklist
 
-1. **Create the trusted-publishing policy** on nuget.org, under the account
-   that will own the package: repository owner `incident-io`, repository
-   `sdk-net`, workflow file `sync.yml`. Its scope must allow **new packages**,
-   for example the glob `IncidentIo*`. A scope that only allows new versions
-   rejects the first release, which creates the package. Renaming `sync.yml`
-   later silently breaks publishing.
-2. **Add the `NUGET_USER` repository secret**: that account's nuget.org profile
-   name, not its email address.
-3. **Optionally reserve the `IncidentIo` prefix** by emailing
+1. **Create the trusted-publishing policy** on nuget.org, under the
+   `incident-io` account that owns the package: repository owner
+   `incident-io`, repository `sdk-net`, workflow file `sync.yml`, package
+   `IncidentIo`. Its scope must allow **new packages and package versions**. A
+   scope that only allows new versions rejects the first release, which
+   creates the package. Renaming `sync.yml` later silently breaks publishing.
+   The workflow names the account in the `NuGet/login` step (`user:`); change
+   it there if the package moves to another account.
+2. **Optionally reserve the `IncidentIo` prefix** by emailing
    account@nuget.org. It adds the verified badge and stops anyone else
    publishing under the prefix.
-4. **Run the workflow once manually** with `dry_run: true` and confirm it gets
+3. **Run the workflow once manually** with `dry_run: true` and confirm it gets
    as far as reporting a version. It only does work when the live schema
    differs from the committed one.
-5. **Uncomment the `schedule:` block** at the top of
+4. **Uncomment the `schedule:` block** at the top of
    `.github/workflows/sync.yml`. Nothing else enables the loop, and nothing
    checks that you did: until this happens the repo looks healthy and publishes
    nothing.
