@@ -96,6 +96,14 @@ namespace IncidentIo.Models
 #else
         public global::IncidentIo.Models.PolicyFindingScheduleV2 Schedule { get; set; }
 #endif
+        /// <summary>Set when policy_type is shift_conflict. Someone is on call in two or more places at once.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::IncidentIo.Models.PolicyFindingShiftConflictV2? ShiftConflict { get; set; }
+#nullable restore
+#else
+        public global::IncidentIo.Models.PolicyFindingShiftConflictV2 ShiftConflict { get; set; }
+#endif
         /// <summary>Where this finding is in its lifecycle</summary>
         public global::IncidentIo.Models.PolicyFindingV2State? State { get; set; }
         /// <summary>The updated_at property</summary>
@@ -147,6 +155,7 @@ namespace IncidentIo.Models
                 { "post_mortem", n => { PostMortem = n.GetObjectValue<global::IncidentIo.Models.PolicyFindingPostMortemV2>(global::IncidentIo.Models.PolicyFindingPostMortemV2.CreateFromDiscriminatorValue); } },
                 { "responsible_users", n => { ResponsibleUsers = n.GetCollectionOfObjectValues<global::IncidentIo.Models.UserV2>(global::IncidentIo.Models.UserV2.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "schedule", n => { Schedule = n.GetObjectValue<global::IncidentIo.Models.PolicyFindingScheduleV2>(global::IncidentIo.Models.PolicyFindingScheduleV2.CreateFromDiscriminatorValue); } },
+                { "shift_conflict", n => { ShiftConflict = n.GetObjectValue<global::IncidentIo.Models.PolicyFindingShiftConflictV2>(global::IncidentIo.Models.PolicyFindingShiftConflictV2.CreateFromDiscriminatorValue); } },
                 { "state", n => { State = n.GetEnumValue<global::IncidentIo.Models.PolicyFindingV2State>(); } },
                 { "updated_at", n => { UpdatedAt = n.GetDateTimeOffsetValue(); } },
                 { "vacation_conflict", n => { VacationConflict = n.GetObjectValue<global::IncidentIo.Models.PolicyFindingVacationConflictV2>(global::IncidentIo.Models.PolicyFindingVacationConflictV2.CreateFromDiscriminatorValue); } },
@@ -173,6 +182,7 @@ namespace IncidentIo.Models
             writer.WriteObjectValue<global::IncidentIo.Models.PolicyFindingPostMortemV2>("post_mortem", PostMortem);
             writer.WriteCollectionOfObjectValues<global::IncidentIo.Models.UserV2>("responsible_users", ResponsibleUsers);
             writer.WriteObjectValue<global::IncidentIo.Models.PolicyFindingScheduleV2>("schedule", Schedule);
+            writer.WriteObjectValue<global::IncidentIo.Models.PolicyFindingShiftConflictV2>("shift_conflict", ShiftConflict);
             writer.WriteEnumValue<global::IncidentIo.Models.PolicyFindingV2State>("state", State);
             writer.WriteDateTimeOffsetValue("updated_at", UpdatedAt);
             writer.WriteObjectValue<global::IncidentIo.Models.PolicyFindingVacationConflictV2>("vacation_conflict", VacationConflict);
