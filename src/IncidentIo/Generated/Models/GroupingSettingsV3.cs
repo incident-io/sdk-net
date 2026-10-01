@@ -14,6 +14,8 @@ namespace IncidentIo.Models
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
+        /// <summary>Use AI to group similar looking alerts. AI alert grouping can only group alerts that are attributed to the same team, so grouping keys must only contain the team alert attribute. Private alerts are grouped by key alone unless AI incident access allows private incidents and alerts. Omit it on an update to keep the current value.</summary>
+        public bool? AiEnabled { get; set; }
         /// <summary>Whether grouping is enabled</summary>
         public bool? Enabled { get; set; }
         /// <summary>Which attributes should this alert route use to group alerts? Only set when grouping is enabled.</summary>
@@ -53,6 +55,7 @@ namespace IncidentIo.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
+                { "ai_enabled", n => { AiEnabled = n.GetBoolValue(); } },
                 { "enabled", n => { Enabled = n.GetBoolValue(); } },
                 { "grouping_keys", n => { GroupingKeys = n.GetCollectionOfObjectValues<global::IncidentIo.Models.GroupingKeyV3>(global::IncidentIo.Models.GroupingKeyV3.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "window_seconds", n => { WindowSeconds = n.GetIntValue(); } },
@@ -66,6 +69,7 @@ namespace IncidentIo.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
+            writer.WriteBoolValue("ai_enabled", AiEnabled);
             writer.WriteBoolValue("enabled", Enabled);
             writer.WriteCollectionOfObjectValues<global::IncidentIo.Models.GroupingKeyV3>("grouping_keys", GroupingKeys);
             writer.WriteIntValue("window_seconds", WindowSeconds);
