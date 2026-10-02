@@ -40,6 +40,14 @@ namespace IncidentIo.Models
 #else
         public List<global::IncidentIo.Models.CustomFieldEntryV2> CustomFieldEntries { get; set; }
 #endif
+        /// <summary>Debriefs scheduled for this incident, ordered by start time. Excludes cancelled calendar events.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<global::IncidentIo.Models.IncidentDebriefV2>? Debriefs { get; set; }
+#nullable restore
+#else
+        public List<global::IncidentIo.Models.IncidentDebriefV2> Debriefs { get; set; }
+#endif
         /// <summary>Incident duration metrics and their measurements for this incident</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -247,6 +255,7 @@ namespace IncidentIo.Models
                 { "created_at", n => { CreatedAt = n.GetDateTimeOffsetValue(); } },
                 { "creator", n => { Creator = n.GetObjectValue<global::IncidentIo.Models.ActorV2>(global::IncidentIo.Models.ActorV2.CreateFromDiscriminatorValue); } },
                 { "custom_field_entries", n => { CustomFieldEntries = n.GetCollectionOfObjectValues<global::IncidentIo.Models.CustomFieldEntryV2>(global::IncidentIo.Models.CustomFieldEntryV2.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "debriefs", n => { Debriefs = n.GetCollectionOfObjectValues<global::IncidentIo.Models.IncidentDebriefV2>(global::IncidentIo.Models.IncidentDebriefV2.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "duration_metrics", n => { DurationMetrics = n.GetCollectionOfObjectValues<global::IncidentIo.Models.IncidentDurationMetricWithValueV2>(global::IncidentIo.Models.IncidentDurationMetricWithValueV2.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "external_issue_reference", n => { ExternalIssueReference = n.GetObjectValue<global::IncidentIo.Models.ExternalIssueReferenceV2>(global::IncidentIo.Models.ExternalIssueReferenceV2.CreateFromDiscriminatorValue); } },
                 { "has_debrief", n => { HasDebrief = n.GetBoolValue(); } },
@@ -289,6 +298,7 @@ namespace IncidentIo.Models
             writer.WriteDateTimeOffsetValue("created_at", CreatedAt);
             writer.WriteObjectValue<global::IncidentIo.Models.ActorV2>("creator", Creator);
             writer.WriteCollectionOfObjectValues<global::IncidentIo.Models.CustomFieldEntryV2>("custom_field_entries", CustomFieldEntries);
+            writer.WriteCollectionOfObjectValues<global::IncidentIo.Models.IncidentDebriefV2>("debriefs", Debriefs);
             writer.WriteCollectionOfObjectValues<global::IncidentIo.Models.IncidentDurationMetricWithValueV2>("duration_metrics", DurationMetrics);
             writer.WriteObjectValue<global::IncidentIo.Models.ExternalIssueReferenceV2>("external_issue_reference", ExternalIssueReference);
             writer.WriteBoolValue("has_debrief", HasDebrief);
