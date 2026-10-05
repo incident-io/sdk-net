@@ -14,7 +14,7 @@ namespace IncidentIo.Models
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>Use AI to group similar looking alerts. AI alert grouping can only group alerts that are attributed to the same team, so grouping keys must only contain the team alert attribute. Private alerts are grouped by key alone unless AI incident access allows private incidents and alerts. Omit it on an update to keep the current value.</summary>
+        /// <summary>Use AI to group similar looking alerts. AI alert grouping can only group alerts that are attributed to the same team, so grouping keys must only contain the team alert attribute. Private alerts are not grouped unless AI incident access allows private incidents and alerts. Omit it on an update to keep the current value.</summary>
         public bool? AiEnabled { get; set; }
         /// <summary>Whether grouping is enabled</summary>
         public bool? Enabled { get; set; }
