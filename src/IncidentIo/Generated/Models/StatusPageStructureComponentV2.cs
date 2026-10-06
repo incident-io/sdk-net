@@ -22,6 +22,10 @@ namespace IncidentIo.Models
 #else
         public string ComponentId { get; set; }
 #endif
+        /// <summary>Whether the page shows this component&apos;s uptime</summary>
+        public bool? DisplayUptime { get; set; }
+        /// <summary>Whether the component is hidden from the page</summary>
+        public bool? Hidden { get; set; }
         /// <summary>The name of this component</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -56,6 +60,8 @@ namespace IncidentIo.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "component_id", n => { ComponentId = n.GetStringValue(); } },
+                { "display_uptime", n => { DisplayUptime = n.GetBoolValue(); } },
+                { "hidden", n => { Hidden = n.GetBoolValue(); } },
                 { "name", n => { Name = n.GetStringValue(); } },
             };
         }
@@ -67,6 +73,8 @@ namespace IncidentIo.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("component_id", ComponentId);
+            writer.WriteBoolValue("display_uptime", DisplayUptime);
+            writer.WriteBoolValue("hidden", Hidden);
             writer.WriteStringValue("name", Name);
             writer.WriteAdditionalData(AdditionalData);
         }

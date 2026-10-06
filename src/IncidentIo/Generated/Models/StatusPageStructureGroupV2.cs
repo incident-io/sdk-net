@@ -22,6 +22,18 @@ namespace IncidentIo.Models
 #else
         public List<global::IncidentIo.Models.StatusPageStructureComponentV2> Components { get; set; }
 #endif
+        /// <summary>A description shown under the group&apos;s name</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Description { get; set; }
+#nullable restore
+#else
+        public string Description { get; set; }
+#endif
+        /// <summary>Whether the page shows uptime aggregated across the group&apos;s components</summary>
+        public bool? DisplayAggregatedUptime { get; set; }
+        /// <summary>Whether the group is hidden from the page</summary>
+        public bool? Hidden { get; set; }
         /// <summary>Unique ID of this component group</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -64,6 +76,9 @@ namespace IncidentIo.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "components", n => { Components = n.GetCollectionOfObjectValues<global::IncidentIo.Models.StatusPageStructureComponentV2>(global::IncidentIo.Models.StatusPageStructureComponentV2.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "description", n => { Description = n.GetStringValue(); } },
+                { "display_aggregated_uptime", n => { DisplayAggregatedUptime = n.GetBoolValue(); } },
+                { "hidden", n => { Hidden = n.GetBoolValue(); } },
                 { "id", n => { Id = n.GetStringValue(); } },
                 { "name", n => { Name = n.GetStringValue(); } },
             };
@@ -76,6 +91,9 @@ namespace IncidentIo.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteCollectionOfObjectValues<global::IncidentIo.Models.StatusPageStructureComponentV2>("components", Components);
+            writer.WriteStringValue("description", Description);
+            writer.WriteBoolValue("display_aggregated_uptime", DisplayAggregatedUptime);
+            writer.WriteBoolValue("hidden", Hidden);
             writer.WriteStringValue("id", Id);
             writer.WriteStringValue("name", Name);
             writer.WriteAdditionalData(AdditionalData);

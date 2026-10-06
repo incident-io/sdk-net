@@ -22,6 +22,16 @@ namespace IncidentIo.Models
 #else
         public global::IncidentIo.Models.StatusPageStructureV2 CurrentStructure { get; set; }
 #endif
+        /// <summary>How the page shows uptime against its components</summary>
+        public global::IncidentIo.Models.StatusPagesShowStatusPageStructureResultV2DisplayUptimeMode? DisplayUptimeMode { get; set; }
+        /// <summary>The management_meta property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::IncidentIo.Models.ManagementMetaV2? ManagementMeta { get; set; }
+#nullable restore
+#else
+        public global::IncidentIo.Models.ManagementMetaV2 ManagementMeta { get; set; }
+#endif
         /// <summary>
         /// Instantiates a new <see cref="global::IncidentIo.Models.StatusPagesShowStatusPageStructureResultV2"/> and sets the default values.
         /// </summary>
@@ -48,6 +58,8 @@ namespace IncidentIo.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "current_structure", n => { CurrentStructure = n.GetObjectValue<global::IncidentIo.Models.StatusPageStructureV2>(global::IncidentIo.Models.StatusPageStructureV2.CreateFromDiscriminatorValue); } },
+                { "display_uptime_mode", n => { DisplayUptimeMode = n.GetEnumValue<global::IncidentIo.Models.StatusPagesShowStatusPageStructureResultV2DisplayUptimeMode>(); } },
+                { "management_meta", n => { ManagementMeta = n.GetObjectValue<global::IncidentIo.Models.ManagementMetaV2>(global::IncidentIo.Models.ManagementMetaV2.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -58,6 +70,8 @@ namespace IncidentIo.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteObjectValue<global::IncidentIo.Models.StatusPageStructureV2>("current_structure", CurrentStructure);
+            writer.WriteEnumValue<global::IncidentIo.Models.StatusPagesShowStatusPageStructureResultV2DisplayUptimeMode>("display_uptime_mode", DisplayUptimeMode);
+            writer.WriteObjectValue<global::IncidentIo.Models.ManagementMetaV2>("management_meta", ManagementMeta);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

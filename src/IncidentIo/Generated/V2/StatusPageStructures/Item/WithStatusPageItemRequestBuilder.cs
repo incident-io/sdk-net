@@ -34,7 +34,7 @@ namespace IncidentIo.V2.StatusPageStructures.Item
         {
         }
         /// <summary>
-        /// Show the structure of a status page.This endpoint requires a valid API key but no specific scopes. Returns the components and component groups configured on a status page. Use this to find component IDs when specifying affected components for incidents or maintenance windows.
+        /// Show the structure of a status page.This endpoint requires a valid API key but no specific scopes. Returns the components and component groups configured on a status page, with their display settings, and how the page shows uptime. Use this to find component IDs when specifying affected components for incidents or maintenance windows.
         /// </summary>
         /// <returns>A <see cref="global::IncidentIo.Models.StatusPagesShowStatusPageStructureResultV2"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -81,7 +81,7 @@ namespace IncidentIo.V2.StatusPageStructures.Item
             return await RequestAdapter.SendAsync<global::IncidentIo.Models.StatusPagesShowStatusPageStructureResultV2>(requestInfo, global::IncidentIo.Models.StatusPagesShowStatusPageStructureResultV2.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Show the structure of a status page.This endpoint requires a valid API key but no specific scopes. Returns the components and component groups configured on a status page. Use this to find component IDs when specifying affected components for incidents or maintenance windows.
+        /// Show the structure of a status page.This endpoint requires a valid API key but no specific scopes. Returns the components and component groups configured on a status page, with their display settings, and how the page shows uptime. Use this to find component IDs when specifying affected components for incidents or maintenance windows.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
