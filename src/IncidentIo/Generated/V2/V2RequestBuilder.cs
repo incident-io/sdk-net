@@ -39,6 +39,7 @@ using IncidentIo.V2.ScheduleOverrides;
 using IncidentIo.V2.ScheduleSyncTargets;
 using IncidentIo.V2.Schedules;
 using IncidentIo.V2.Secrets;
+using IncidentIo.V2.StatusPageComponents;
 using IncidentIo.V2.StatusPageIncidentUpdates;
 using IncidentIo.V2.StatusPageIncidents;
 using IncidentIo.V2.StatusPageMaintenanceUpdates;
@@ -258,6 +259,11 @@ namespace IncidentIo.V2
         public global::IncidentIo.V2.Secrets.SecretsRequestBuilder Secrets
         {
             get => new global::IncidentIo.V2.Secrets.SecretsRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The status_page_components property</summary>
+        public global::IncidentIo.V2.StatusPageComponents.StatusPageComponentsRequestBuilder StatusPageComponents
+        {
+            get => new global::IncidentIo.V2.StatusPageComponents.StatusPageComponentsRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>The status_page_incident_updates property</summary>
         public global::IncidentIo.V2.StatusPageIncidentUpdates.StatusPageIncidentUpdatesRequestBuilder StatusPageIncidentUpdates
