@@ -6,6 +6,7 @@ using IncidentIo.V3.CatalogEntries;
 using IncidentIo.V3.CatalogResources;
 using IncidentIo.V3.CatalogTypes;
 using IncidentIo.V3.FollowUps;
+using IncidentIo.V3.IncidentForms;
 using IncidentIo.V3.Teams;
 using Microsoft.Kiota.Abstractions.Extensions;
 using Microsoft.Kiota.Abstractions;
@@ -50,6 +51,11 @@ namespace IncidentIo.V3
         public global::IncidentIo.V3.FollowUps.FollowUpsRequestBuilder FollowUps
         {
             get => new global::IncidentIo.V3.FollowUps.FollowUpsRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The incident_forms property</summary>
+        public global::IncidentIo.V3.IncidentForms.IncidentFormsRequestBuilder IncidentForms
+        {
+            get => new global::IncidentIo.V3.IncidentForms.IncidentFormsRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>The teams property</summary>
         public global::IncidentIo.V3.Teams.TeamsRequestBuilder Teams
