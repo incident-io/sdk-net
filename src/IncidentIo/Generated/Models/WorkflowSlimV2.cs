@@ -14,6 +14,8 @@ namespace IncidentIo.Models
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
+        /// <summary>Whether the workflow is configured to run immediately or ask for confirmation in the incident channel</summary>
+        public global::IncidentIo.Models.WorkflowSlimV2AutoRunMode? AutoRunMode { get; set; }
         /// <summary>Conditions that apply to the workflow trigger</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -151,6 +153,7 @@ namespace IncidentIo.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
+                { "auto_run_mode", n => { AutoRunMode = n.GetEnumValue<global::IncidentIo.Models.WorkflowSlimV2AutoRunMode>(); } },
                 { "condition_groups", n => { ConditionGroups = n.GetCollectionOfObjectValues<global::IncidentIo.Models.ConditionGroupV2>(global::IncidentIo.Models.ConditionGroupV2.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "continue_on_step_error", n => { ContinueOnStepError = n.GetBoolValue(); } },
                 { "delay", n => { Delay = n.GetObjectValue<global::IncidentIo.Models.WorkflowDelayV2>(global::IncidentIo.Models.WorkflowDelayV2.CreateFromDiscriminatorValue); } },
@@ -180,6 +183,7 @@ namespace IncidentIo.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
+            writer.WriteEnumValue<global::IncidentIo.Models.WorkflowSlimV2AutoRunMode>("auto_run_mode", AutoRunMode);
             writer.WriteCollectionOfObjectValues<global::IncidentIo.Models.ConditionGroupV2>("condition_groups", ConditionGroups);
             writer.WriteBoolValue("continue_on_step_error", ContinueOnStepError);
             writer.WriteObjectValue<global::IncidentIo.Models.WorkflowDelayV2>("delay", Delay);

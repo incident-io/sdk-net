@@ -22,6 +22,8 @@ namespace IncidentIo.Models
 #else
         public global::IncidentIo.Models.WorkflowsUpdateWorkflowPayloadV2Annotations Annotations { get; set; }
 #endif
+        /// <summary>Whether the workflow runs immediately, or asks for confirmation in the incident channel first. Defaults to `run_automatically` on create. If omitted on update, the workflow keeps its current mode.</summary>
+        public global::IncidentIo.Models.WorkflowsUpdateWorkflowPayloadV2AutoRunMode? AutoRunMode { get; set; }
         /// <summary>Conditions that apply to the workflow trigger</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -56,7 +58,7 @@ namespace IncidentIo.Models
 #else
         public string Folder { get; set; }
 #endif
-        /// <summary>User-configured form fields available in the workflow scope (manual triggers only)</summary>
+        /// <summary>User-configured form fields available in the workflow scope. Allowed on manually-triggered workflows, and on workflows with an `auto_run_mode` of `confirm_before_running`.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<global::IncidentIo.Models.WorkflowFormFieldPayloadV2>? FormFields { get; set; }
@@ -150,6 +152,7 @@ namespace IncidentIo.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "annotations", n => { Annotations = n.GetObjectValue<global::IncidentIo.Models.WorkflowsUpdateWorkflowPayloadV2Annotations>(global::IncidentIo.Models.WorkflowsUpdateWorkflowPayloadV2Annotations.CreateFromDiscriminatorValue); } },
+                { "auto_run_mode", n => { AutoRunMode = n.GetEnumValue<global::IncidentIo.Models.WorkflowsUpdateWorkflowPayloadV2AutoRunMode>(); } },
                 { "condition_groups", n => { ConditionGroups = n.GetCollectionOfObjectValues<global::IncidentIo.Models.ConditionGroupPayloadV2>(global::IncidentIo.Models.ConditionGroupPayloadV2.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "continue_on_step_error", n => { ContinueOnStepError = n.GetBoolValue(); } },
                 { "delay", n => { Delay = n.GetObjectValue<global::IncidentIo.Models.WorkflowDelayV2>(global::IncidentIo.Models.WorkflowDelayV2.CreateFromDiscriminatorValue); } },
@@ -178,6 +181,7 @@ namespace IncidentIo.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteObjectValue<global::IncidentIo.Models.WorkflowsUpdateWorkflowPayloadV2Annotations>("annotations", Annotations);
+            writer.WriteEnumValue<global::IncidentIo.Models.WorkflowsUpdateWorkflowPayloadV2AutoRunMode>("auto_run_mode", AutoRunMode);
             writer.WriteCollectionOfObjectValues<global::IncidentIo.Models.ConditionGroupPayloadV2>("condition_groups", ConditionGroups);
             writer.WriteBoolValue("continue_on_step_error", ContinueOnStepError);
             writer.WriteObjectValue<global::IncidentIo.Models.WorkflowDelayV2>("delay", Delay);
