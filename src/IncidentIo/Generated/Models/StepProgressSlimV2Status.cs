@@ -19,5 +19,9 @@ namespace IncidentIo.Models
         #pragma warning disable CS1591
         Error,
         #pragma warning restore CS1591
+        [EnumMember(Value = "suspended")]
+        #pragma warning disable CS1591
+        Suspended,
+        #pragma warning restore CS1591
     }
 }
