@@ -14,7 +14,7 @@ namespace IncidentIo.Models
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The provider hosting the document. Set this when it can&apos;t be inferred from the permalink so the link renders correctly.</summary>
+        /// <summary>The provider hosting the document. This is informational only: the document is always stored as a link to the permalink.</summary>
         public global::IncidentIo.Models.PostmortemDocumentsAttachPayloadV1DocumentProvider? DocumentProvider { get; set; }
         /// <summary>The unique identifier of the incident to attach the post-mortem document to</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

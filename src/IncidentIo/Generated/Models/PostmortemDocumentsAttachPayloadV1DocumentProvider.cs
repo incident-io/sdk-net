@@ -3,7 +3,7 @@ using System.Runtime.Serialization;
 using System;
 namespace IncidentIo.Models
 {
-    /// <summary>The provider hosting the document. Set this when it can&apos;t be inferred from the permalink so the link renders correctly.</summary>
+    /// <summary>The provider hosting the document. This is informational only: the document is always stored as a link to the permalink.</summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public enum PostmortemDocumentsAttachPayloadV1DocumentProvider
     {
