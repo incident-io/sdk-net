@@ -63,6 +63,10 @@ namespace IncidentIo.Models
         #pragma warning disable CS1591
         SalesforceCase,
         #pragma warning restore CS1591
+        [EnumMember(Value = "pylon_issue")]
+        #pragma warning disable CS1591
+        PylonIssue,
+        #pragma warning restore CS1591
         [EnumMember(Value = "arbitrary_url")]
         #pragma warning disable CS1591
         ArbitraryUrl,
