@@ -32,7 +32,7 @@ namespace IncidentIo.Models
 #else
         public string Message { get; set; }
 #endif
-        /// <summary>Whether to notify subscribers about this status page maintenance update. This will not work if your status page has more than 1000 subscribers.</summary>
+        /// <summary>Whether to notify subscribers about this status page maintenance update. If your status page has more than 1000 subscribers, requests that set this to true are rejected. This limit applies only to the public API: publishing from the incident.io dashboard or Slack always notifies every subscriber.</summary>
         public bool? NotifySubscribers { get; set; }
         /// <summary>ID of the status page maintenance window</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
