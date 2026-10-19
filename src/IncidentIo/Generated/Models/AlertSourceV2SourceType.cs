@@ -83,6 +83,10 @@ namespace IncidentIo.Models
         #pragma warning disable CS1591
         Expel,
         #pragma warning restore CS1591
+        [EnumMember(Value = "git_guardian")]
+        #pragma warning disable CS1591
+        GitGuardian,
+        #pragma warning restore CS1591
         [EnumMember(Value = "github_issue")]
         #pragma warning disable CS1591
         GithubIssue,
