@@ -24,6 +24,10 @@ namespace IncidentIo.Models
         #pragma warning disable CS1591
         ManageSettings,
         #pragma warning restore CS1591
+        [EnumMember(Value = "glossary_entries_manage")]
+        #pragma warning disable CS1591
+        GlossaryEntriesManage,
+        #pragma warning restore CS1591
         [EnumMember(Value = "global_access")]
         #pragma warning disable CS1591
         GlobalAccess,
