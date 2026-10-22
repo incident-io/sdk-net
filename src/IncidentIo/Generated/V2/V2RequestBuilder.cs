@@ -30,6 +30,7 @@ using IncidentIo.V2.IncidentTimelineItems;
 using IncidentIo.V2.IncidentTimestamps;
 using IncidentIo.V2.IncidentUpdates;
 using IncidentIo.V2.Incidents;
+using IncidentIo.V2.ManagedResources;
 using IncidentIo.V2.OnCallNotificationPauses;
 using IncidentIo.V2.PayConfigs;
 using IncidentIo.V2.PayReports;
@@ -215,6 +216,11 @@ namespace IncidentIo.V2
         public global::IncidentIo.V2.Incidents.IncidentsRequestBuilder Incidents
         {
             get => new global::IncidentIo.V2.Incidents.IncidentsRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The managed_resources property</summary>
+        public global::IncidentIo.V2.ManagedResources.ManagedResourcesRequestBuilder ManagedResources
+        {
+            get => new global::IncidentIo.V2.ManagedResources.ManagedResourcesRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>The on_call_notification_pauses property</summary>
         public global::IncidentIo.V2.OnCallNotificationPauses.OnCallNotificationPausesRequestBuilder OnCallNotificationPauses
