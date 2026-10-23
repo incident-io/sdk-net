@@ -20,6 +20,7 @@ using IncidentIo.V2.EscalationPathTemplates;
 using IncidentIo.V2.EscalationPaths;
 using IncidentIo.V2.Escalations;
 using IncidentIo.V2.FollowUps;
+using IncidentIo.V2.GlossaryEntries;
 using IncidentIo.V2.Heartbeat;
 using IncidentIo.V2.IncidentActivityLogEntries;
 using IncidentIo.V2.IncidentAlerts;
@@ -166,6 +167,11 @@ namespace IncidentIo.V2
         public global::IncidentIo.V2.FollowUps.FollowUpsRequestBuilder FollowUps
         {
             get => new global::IncidentIo.V2.FollowUps.FollowUpsRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The glossary_entries property</summary>
+        public global::IncidentIo.V2.GlossaryEntries.GlossaryEntriesRequestBuilder GlossaryEntries
+        {
+            get => new global::IncidentIo.V2.GlossaryEntries.GlossaryEntriesRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>The heartbeat property</summary>
         public global::IncidentIo.V2.Heartbeat.HeartbeatRequestBuilder Heartbeat
