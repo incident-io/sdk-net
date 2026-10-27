@@ -255,6 +255,10 @@ namespace IncidentIo.Models
         #pragma warning disable CS1591
         InvestigationHypothesisUpdate,
         #pragma warning restore CS1591
+        [EnumMember(Value = "investigation_heads_up")]
+        #pragma warning disable CS1591
+        InvestigationHeadsUp,
+        #pragma warning restore CS1591
         [EnumMember(Value = "workflow_ran")]
         #pragma warning disable CS1591
         WorkflowRan,
