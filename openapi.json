@@ -23004,6 +23004,53 @@
         ],
         "type": "object"
       },
+      "AuditLogCodeRepositoryAccessedMetadataV2": {
+        "example": {
+          "alert_id": "01FCNDV6P870EA6S7TK1DSYDG0",
+          "incident_id": "01FCNDV6P870EA6S7TK1DSYDG0",
+          "investigation_id": "01FCNDV6P870EA6S7TK1DSYDG0",
+          "revision_sha": "9fceb02d0ae598e95dc970b74767f19372d61af8",
+          "run_type": "investigation",
+          "user_id": "01FCNDV6P870EA6S7TK1DSYDG0"
+        },
+        "properties": {
+          "alert_id": {
+            "description": "ID of the alert the run was for, when known",
+            "example": "01FCNDV6P870EA6S7TK1DSYDG0",
+            "type": "string"
+          },
+          "incident_id": {
+            "description": "ID of the incident the run was for, when known",
+            "example": "01FCNDV6P870EA6S7TK1DSYDG0",
+            "type": "string"
+          },
+          "investigation_id": {
+            "description": "ID of the investigation, when an investigation read the repository",
+            "example": "01FCNDV6P870EA6S7TK1DSYDG0",
+            "type": "string"
+          },
+          "revision_sha": {
+            "description": "The commit the run checked out",
+            "example": "9fceb02d0ae598e95dc970b74767f19372d61af8",
+            "type": "string"
+          },
+          "run_type": {
+            "description": "The kind of agent run that read the repository (investigation, chat, code_agent)",
+            "example": "investigation",
+            "type": "string"
+          },
+          "user_id": {
+            "description": "ID of the user who asked, when a chat read the repository",
+            "example": "01FCNDV6P870EA6S7TK1DSYDG0",
+            "type": "string"
+          }
+        },
+        "required": [
+          "run_type",
+          "revision_sha"
+        ],
+        "type": "object"
+      },
       "AuditLogEmailOtpLoginSettingUpdatedMetadataV2": {
         "example": {
           "enabled": "true"
@@ -29959,6 +30006,93 @@
           "actor",
           "targets",
           "context"
+        ],
+        "type": "object"
+      },
+      "AuditLogsCodeRepositoryAccessedV1": {
+        "example": {
+          "action": "code_repository.accessed",
+          "actor": {
+            "id": "01FCNDV6P870EA6S7TK1DSYDG0",
+            "metadata": {
+              "user_base_role_slug": "admin",
+              "user_custom_role_slugs": "engineering,security"
+            },
+            "name": "John Doe",
+            "type": "user"
+          },
+          "context": {
+            "location": "1.2.3.4",
+            "user_agent": "Chrome/91.0.4472.114"
+          },
+          "metadata": {
+            "alert_id": "01FCNDV6P870EA6S7TK1DSYDG0",
+            "incident_id": "01FCNDV6P870EA6S7TK1DSYDG0",
+            "investigation_id": "01FCNDV6P870EA6S7TK1DSYDG0",
+            "revision_sha": "9fceb02d0ae598e95dc970b74767f19372d61af8",
+            "run_type": "investigation",
+            "user_id": "01FCNDV6P870EA6S7TK1DSYDG0"
+          },
+          "occurred_at": "2021-08-17T13:28:57.801578Z",
+          "targets": [
+            {
+              "id": "01FCNDV6P870EA6S7TK1DSYDG0",
+              "name": "acme/api",
+              "type": "code_repository"
+            }
+          ],
+          "version": 1
+        },
+        "properties": {
+          "action": {
+            "description": "The type of log entry that this is",
+            "example": "code_repository.accessed",
+            "type": "string"
+          },
+          "actor": {
+            "$ref": "#/components/schemas/AuditLogActorV2"
+          },
+          "context": {
+            "$ref": "#/components/schemas/AuditLogEntryContextV2"
+          },
+          "metadata": {
+            "$ref": "#/components/schemas/AuditLogCodeRepositoryAccessedMetadataV2"
+          },
+          "occurred_at": {
+            "description": "When the entry occurred",
+            "example": "2021-08-17T13:28:57.801578Z",
+            "format": "date-time",
+            "type": "string"
+          },
+          "targets": {
+            "description": "The custom field that was created",
+            "example": [
+              {
+                "id": "01FCNDV6P870EA6S7TK1DSYDG0",
+                "name": "acme/api",
+                "type": "code_repository"
+              }
+            ],
+            "items": {
+              "$ref": "#/components/schemas/AuditLogTargetV2"
+            },
+            "type": "array"
+          },
+          "version": {
+            "description": "Which version the event is",
+            "example": 1,
+            "format": "int64",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "action",
+          "occurred_at",
+          "version",
+          "actor",
+          "targets",
+          "context",
+          "metadata"
         ],
         "type": "object"
       },
@@ -223434,6 +223568,60 @@
                 },
                 "schema": {
                   "$ref": "#/components/schemas/AuditLogsCatalogTypeUpdatedV2"
+                }
+              }
+            },
+            "description": "OK response."
+          }
+        },
+        "tags": [
+          "Audit logs"
+        ]
+      }
+    },
+    "/x-audit-logs/code_repository.accessed.1": {
+      "get": {
+        "description": "This entry is created whenever an agent run, such as an investigation, a chat or a code agent, checks out one of your repositories",
+        "operationId": "CodeRepositoryAccessedV1",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "action": "code_repository.accessed",
+                  "actor": {
+                    "id": "01FCNDV6P870EA6S7TK1DSYDG0",
+                    "metadata": {
+                      "user_base_role_slug": "admin",
+                      "user_custom_role_slugs": "engineering,security"
+                    },
+                    "name": "John Doe",
+                    "type": "user"
+                  },
+                  "context": {
+                    "location": "1.2.3.4",
+                    "user_agent": "Chrome/91.0.4472.114"
+                  },
+                  "metadata": {
+                    "alert_id": "01FCNDV6P870EA6S7TK1DSYDG0",
+                    "incident_id": "01FCNDV6P870EA6S7TK1DSYDG0",
+                    "investigation_id": "01FCNDV6P870EA6S7TK1DSYDG0",
+                    "revision_sha": "9fceb02d0ae598e95dc970b74767f19372d61af8",
+                    "run_type": "investigation",
+                    "user_id": "01FCNDV6P870EA6S7TK1DSYDG0"
+                  },
+                  "occurred_at": "2021-08-17T13:28:57.801578Z",
+                  "targets": [
+                    {
+                      "id": "01FCNDV6P870EA6S7TK1DSYDG0",
+                      "name": "acme/api",
+                      "type": "code_repository"
+                    }
+                  ],
+                  "version": 1
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/AuditLogsCodeRepositoryAccessedV1"
                 }
               }
             },
