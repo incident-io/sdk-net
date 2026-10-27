@@ -219,6 +219,10 @@ namespace IncidentIo.Models
         #pragma warning disable CS1591
         Uptime,
         #pragma warning restore CS1591
+        [EnumMember(Value = "upwind")]
+        #pragma warning disable CS1591
+        Upwind,
+        #pragma warning restore CS1591
         [EnumMember(Value = "vercel")]
         #pragma warning disable CS1591
         Vercel,
