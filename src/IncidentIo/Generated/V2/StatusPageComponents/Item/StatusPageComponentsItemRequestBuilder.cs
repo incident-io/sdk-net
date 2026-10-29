@@ -34,7 +34,7 @@ namespace IncidentIo.V2.StatusPageComponents.Item
         {
         }
         /// <summary>
-        /// Archive a status page component.
+        /// Archive a status page component.This endpoint requires an API key with the &quot;Manage organization settings (e.g. custom fields)&quot; scope.
         /// </summary>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -127,7 +127,7 @@ namespace IncidentIo.V2.StatusPageComponents.Item
             return await RequestAdapter.SendAsync<global::IncidentIo.Models.StatusPageComponentsShowResultV2>(requestInfo, global::IncidentIo.Models.StatusPageComponentsShowResultV2.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Update a status page component&apos;s name and description.
+        /// Update a status page component&apos;s name and description.This endpoint requires an API key with the &quot;Manage organization settings (e.g. custom fields)&quot; scope.
         /// </summary>
         /// <returns>A <see cref="global::IncidentIo.Models.StatusPageComponentsUpdateResultV2"/></returns>
         /// <param name="body">The request body</param>
@@ -176,7 +176,7 @@ namespace IncidentIo.V2.StatusPageComponents.Item
             return await RequestAdapter.SendAsync<global::IncidentIo.Models.StatusPageComponentsUpdateResultV2>(requestInfo, global::IncidentIo.Models.StatusPageComponentsUpdateResultV2.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Archive a status page component.
+        /// Archive a status page component.This endpoint requires an API key with the &quot;Manage organization settings (e.g. custom fields)&quot; scope.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -214,7 +214,7 @@ namespace IncidentIo.V2.StatusPageComponents.Item
             return requestInfo;
         }
         /// <summary>
-        /// Update a status page component&apos;s name and description.
+        /// Update a status page component&apos;s name and description.This endpoint requires an API key with the &quot;Manage organization settings (e.g. custom fields)&quot; scope.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>

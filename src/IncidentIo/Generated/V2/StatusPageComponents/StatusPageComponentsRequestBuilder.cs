@@ -94,7 +94,7 @@ namespace IncidentIo.V2.StatusPageComponents
             return await RequestAdapter.SendAsync<global::IncidentIo.Models.StatusPageComponentsListResultV2>(requestInfo, global::IncidentIo.Models.StatusPageComponentsListResultV2.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Create a status page component. Placement on a page is controlled separately via status page structures.
+        /// Create a status page component. Placement on a page is controlled separately via status page structures.This endpoint requires an API key with the &quot;Manage organization settings (e.g. custom fields)&quot; scope.
         /// </summary>
         /// <returns>A <see cref="global::IncidentIo.Models.StatusPageComponentsCreateResultV2"/></returns>
         /// <param name="body">The request body</param>
@@ -162,7 +162,7 @@ namespace IncidentIo.V2.StatusPageComponents
             return requestInfo;
         }
         /// <summary>
-        /// Create a status page component. Placement on a page is controlled separately via status page structures.
+        /// Create a status page component. Placement on a page is controlled separately via status page structures.This endpoint requires an API key with the &quot;Manage organization settings (e.g. custom fields)&quot; scope.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
