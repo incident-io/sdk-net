@@ -126,6 +126,8 @@ namespace IncidentIo.Models
 #else
         public string SourceRepoUrl { get; set; }
 #endif
+        /// <summary>Whether entries of this type take custom_aliases. Only catalog types that incident.io syncs do, as you can&apos;t change their aliases directly, and not those whose aliases you edit elsewhere, such as alert priorities.</summary>
+        public bool? SupportsCustomAliases { get; set; }
         /// <summary>The type name of this catalog type, to be used when defining attributes. This is immutable once a CatalogType has been created. For non-externally sync types, it must follow the pattern Custom[&quot;SomeName&quot;]</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -183,6 +185,7 @@ namespace IncidentIo.Models
                 { "required_integrations", n => { RequiredIntegrations = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
                 { "schema", n => { Schema = n.GetObjectValue<global::IncidentIo.Models.CatalogTypeSchemaV3>(global::IncidentIo.Models.CatalogTypeSchemaV3.CreateFromDiscriminatorValue); } },
                 { "source_repo_url", n => { SourceRepoUrl = n.GetStringValue(); } },
+                { "supports_custom_aliases", n => { SupportsCustomAliases = n.GetBoolValue(); } },
                 { "type_name", n => { TypeName = n.GetStringValue(); } },
                 { "updated_at", n => { UpdatedAt = n.GetDateTimeOffsetValue(); } },
                 { "use_name_as_identifier", n => { UseNameAsIdentifier = n.GetBoolValue(); } },
@@ -215,6 +218,7 @@ namespace IncidentIo.Models
             writer.WriteCollectionOfPrimitiveValues<string>("required_integrations", RequiredIntegrations);
             writer.WriteObjectValue<global::IncidentIo.Models.CatalogTypeSchemaV3>("schema", Schema);
             writer.WriteStringValue("source_repo_url", SourceRepoUrl);
+            writer.WriteBoolValue("supports_custom_aliases", SupportsCustomAliases);
             writer.WriteStringValue("type_name", TypeName);
             writer.WriteDateTimeOffsetValue("updated_at", UpdatedAt);
             writer.WriteBoolValue("use_name_as_identifier", UseNameAsIdentifier);

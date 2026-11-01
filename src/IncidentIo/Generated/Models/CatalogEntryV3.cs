@@ -42,6 +42,14 @@ namespace IncidentIo.Models
 #endif
         /// <summary>When this entry was created</summary>
         public DateTimeOffset? CreatedAt { get; set; }
+        /// <summary>Aliases your organisation has added to an entry of a catalog type that incident.io syncs, such as a schedule or escalation path, which you can&apos;t change aliases on directly. Syncs keep them, and they are also listed in aliases. When you update an entry, omit this or send null to keep its current custom aliases, send an empty list to clear them, or send a list to replace them.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<string>? CustomAliases { get; set; }
+#nullable restore
+#else
+        public List<string> CustomAliases { get; set; }
+#endif
         /// <summary>An optional alternative ID for this entry, which is ensured to be unique for the type</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -100,6 +108,7 @@ namespace IncidentIo.Models
                 { "attribute_values", n => { AttributeValues = n.GetObjectValue<global::IncidentIo.Models.CatalogEntryV3AttributeValues>(global::IncidentIo.Models.CatalogEntryV3AttributeValues.CreateFromDiscriminatorValue); } },
                 { "catalog_type_id", n => { CatalogTypeId = n.GetStringValue(); } },
                 { "created_at", n => { CreatedAt = n.GetDateTimeOffsetValue(); } },
+                { "custom_aliases", n => { CustomAliases = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
                 { "external_id", n => { ExternalId = n.GetStringValue(); } },
                 { "id", n => { Id = n.GetStringValue(); } },
                 { "name", n => { Name = n.GetStringValue(); } },
@@ -119,6 +128,7 @@ namespace IncidentIo.Models
             writer.WriteObjectValue<global::IncidentIo.Models.CatalogEntryV3AttributeValues>("attribute_values", AttributeValues);
             writer.WriteStringValue("catalog_type_id", CatalogTypeId);
             writer.WriteDateTimeOffsetValue("created_at", CreatedAt);
+            writer.WriteCollectionOfPrimitiveValues<string>("custom_aliases", CustomAliases);
             writer.WriteStringValue("external_id", ExternalId);
             writer.WriteStringValue("id", Id);
             writer.WriteStringValue("name", Name);
