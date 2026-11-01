@@ -55,7 +55,7 @@ namespace IncidentIo.Models
 #else
         public string Name { get; set; }
 #endif
-        /// <summary>If specified, will update the rank of the entry. When omitted, rank will be set to null (allowing rank removal).</summary>
+        /// <summary>If specified, will update the rank of the entry. When omitted, rank will be set to null (allowing rank removal), unless incident.io syncs the catalog type, in which case the existing rank is preserved.</summary>
         public int? Rank { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::IncidentIo.Models.PartialEntryPayloadV3"/> and sets the default values.
