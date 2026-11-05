@@ -2,6 +2,7 @@
 #pragma warning disable CS0618
 using IncidentIo.Models;
 using IncidentIo.V2.StatusPages.Item.Components;
+using IncidentIo.V2.StatusPages.Item.Customers;
 using Microsoft.Kiota.Abstractions.Extensions;
 using Microsoft.Kiota.Abstractions.Serialization;
 using Microsoft.Kiota.Abstractions;
@@ -22,6 +23,11 @@ namespace IncidentIo.V2.StatusPages.Item
         public global::IncidentIo.V2.StatusPages.Item.Components.ComponentsRequestBuilder Components
         {
             get => new global::IncidentIo.V2.StatusPages.Item.Components.ComponentsRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The customers property</summary>
+        public global::IncidentIo.V2.StatusPages.Item.Customers.CustomersRequestBuilder Customers
+        {
+            get => new global::IncidentIo.V2.StatusPages.Item.Customers.CustomersRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>
         /// Instantiates a new <see cref="global::IncidentIo.V2.StatusPages.Item.WithStatusPageItemRequestBuilder"/> and sets the default values.
