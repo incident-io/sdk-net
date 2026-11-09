@@ -15,7 +15,7 @@ namespace IncidentIo.Models
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>Availability over the window as a percentage, floored (for example &quot;99.94&quot;). Omitted when we have no data covering the window.</summary>
+        /// <summary>Availability over the window as a percentage, floored (for example &quot;99.94&quot;). It has at least as many decimal places as the status page&apos;s uptime decimal places setting. Above 99.99%, it can have more decimal places, up to six. Omitted when we have no data covering the window.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? AvailabilityPercent { get; set; }
