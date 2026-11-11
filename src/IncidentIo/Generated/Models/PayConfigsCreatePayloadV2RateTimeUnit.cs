@@ -3,7 +3,7 @@ using System.Runtime.Serialization;
 using System;
 namespace IncidentIo.Models
 {
-    /// <summary>The unit of time every rate on this config is quoted per</summary>
+    /// <summary>The unit of time every rate on this config is quoted per: hour, day, or week. A day is 24 hours of shift time and a week is 7 days. Pay is pro-rated by the second.</summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public enum PayConfigsCreatePayloadV2RateTimeUnit
     {
@@ -14,6 +14,10 @@ namespace IncidentIo.Models
         [EnumMember(Value = "day")]
         #pragma warning disable CS1591
         Day,
+        #pragma warning restore CS1591
+        [EnumMember(Value = "week")]
+        #pragma warning disable CS1591
+        Week,
         #pragma warning restore CS1591
     }
 }
