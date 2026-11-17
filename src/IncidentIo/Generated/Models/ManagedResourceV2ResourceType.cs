@@ -12,6 +12,10 @@ namespace IncidentIo.Models
         #pragma warning disable CS1591
         AlertRoute,
         #pragma warning restore CS1591
+        [EnumMember(Value = "alert_rule")]
+        #pragma warning disable CS1591
+        AlertRule,
+        #pragma warning restore CS1591
         [EnumMember(Value = "alert_source")]
         #pragma warning disable CS1591
         AlertSource,
