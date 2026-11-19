@@ -34,7 +34,7 @@ namespace IncidentIo.V2.IncidentParticipantWorkloads
         {
         }
         /// <summary>
-        /// List the participants of an incident with their workload.We calculate how much time each participant has spent working on the incident, aggregatedper participant. Each participant is annotated with their participant type and, if they haveleft the incident, when they were archived.Workload is calculated periodically, so values can lag real time and the most recent periodmay still be filling. The metadata reports the time the figures are calculated up to.Workload for private incidents is only returned to API keys with the`incident_workloads.view_private` scope.
+        /// List the participants of an incident with their workload.We calculate how much time each participant has spent working on the incident, aggregatedper participant. Each participant is annotated with their participant type and, if they haveleft the incident, when they were archived.Workload is calculated periodically, so values can lag real time and the most recent periodmay still be filling. The metadata reports the time the figures are calculated up to.Workload for private incidents is only returned to API keys with the`incident_workloads.view.private_incidents` scope.
         /// </summary>
         /// <returns>A <see cref="global::IncidentIo.Models.IncidentParticipantWorkloadsListResultV2"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -81,7 +81,7 @@ namespace IncidentIo.V2.IncidentParticipantWorkloads
             return await RequestAdapter.SendAsync<global::IncidentIo.Models.IncidentParticipantWorkloadsListResultV2>(requestInfo, global::IncidentIo.Models.IncidentParticipantWorkloadsListResultV2.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// List the participants of an incident with their workload.We calculate how much time each participant has spent working on the incident, aggregatedper participant. Each participant is annotated with their participant type and, if they haveleft the incident, when they were archived.Workload is calculated periodically, so values can lag real time and the most recent periodmay still be filling. The metadata reports the time the figures are calculated up to.Workload for private incidents is only returned to API keys with the`incident_workloads.view_private` scope.
+        /// List the participants of an incident with their workload.We calculate how much time each participant has spent working on the incident, aggregatedper participant. Each participant is annotated with their participant type and, if they haveleft the incident, when they were archived.Workload is calculated periodically, so values can lag real time and the most recent periodmay still be filling. The metadata reports the time the figures are calculated up to.Workload for private incidents is only returned to API keys with the`incident_workloads.view.private_incidents` scope.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -109,7 +109,7 @@ namespace IncidentIo.V2.IncidentParticipantWorkloads
             return new global::IncidentIo.V2.IncidentParticipantWorkloads.IncidentParticipantWorkloadsRequestBuilder(rawUrl, RequestAdapter);
         }
         /// <summary>
-        /// List the participants of an incident with their workload.We calculate how much time each participant has spent working on the incident, aggregatedper participant. Each participant is annotated with their participant type and, if they haveleft the incident, when they were archived.Workload is calculated periodically, so values can lag real time and the most recent periodmay still be filling. The metadata reports the time the figures are calculated up to.Workload for private incidents is only returned to API keys with the`incident_workloads.view_private` scope.
+        /// List the participants of an incident with their workload.We calculate how much time each participant has spent working on the incident, aggregatedper participant. Each participant is annotated with their participant type and, if they haveleft the incident, when they were archived.Workload is calculated periodically, so values can lag real time and the most recent periodmay still be filling. The metadata reports the time the figures are calculated up to.Workload for private incidents is only returned to API keys with the`incident_workloads.view.private_incidents` scope.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class IncidentParticipantWorkloadsRequestBuilderGetQueryParameters 

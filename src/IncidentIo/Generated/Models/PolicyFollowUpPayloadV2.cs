@@ -31,7 +31,7 @@ namespace IncidentIo.Models
 #else
         public List<global::IncidentIo.Models.ConditionGroupPayloadV2> Requirements { get; set; }
 #endif
-        /// <summary>Requires the policies.run_on_private scope</summary>
+        /// <summary>Requires the policies.run.private_incidents scope</summary>
         public bool? RunOnPrivateIncidents { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::IncidentIo.Models.PolicyFollowUpPayloadV2"/> and sets the default values.

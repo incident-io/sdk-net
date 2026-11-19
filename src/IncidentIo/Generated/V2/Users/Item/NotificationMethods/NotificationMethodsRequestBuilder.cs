@@ -34,7 +34,7 @@ namespace IncidentIo.V2.Users.Item.NotificationMethods
         {
         }
         /// <summary>
-        /// List notification methods for a user. Phone numbers are partially redacted unless the API key holds the notification_methods.view_unredacted scope.
+        /// List notification methods for a user. Phone numbers are partially redacted unless the API key holds the unredacted_notification_methods.view scope.
         /// </summary>
         /// <returns>A <see cref="global::IncidentIo.Models.UsersListNotificationMethodsResultV2"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -81,7 +81,7 @@ namespace IncidentIo.V2.Users.Item.NotificationMethods
             return await RequestAdapter.SendAsync<global::IncidentIo.Models.UsersListNotificationMethodsResultV2>(requestInfo, global::IncidentIo.Models.UsersListNotificationMethodsResultV2.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// List notification methods for a user. Phone numbers are partially redacted unless the API key holds the notification_methods.view_unredacted scope.
+        /// List notification methods for a user. Phone numbers are partially redacted unless the API key holds the unredacted_notification_methods.view scope.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
