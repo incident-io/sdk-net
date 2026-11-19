@@ -195,5 +195,9 @@ namespace IncidentIo.Models
         #pragma warning disable CS1591
         DocumentsViewer,
         #pragma warning restore CS1591
+        [EnumMember(Value = "user_sessions_revoke")]
+        #pragma warning disable CS1591
+        UserSessionsRevoke,
+        #pragma warning restore CS1591
     }
 }
