@@ -34,7 +34,7 @@ namespace IncidentIo.V2.Users.Item.Actions.RevokeSessions
         {
         }
         /// <summary>
-        /// End every active session for a user.Dashboard sessions stop working on the next request. Mobile, desktop app, and MCP sessions end as well: each registered device is signed out. The user remains active and can sign in again. Personal API keys are not revoked. A user cannot end sessions for someone with a higher role. An API key with this scope can.Use this during deprovisioning when sessions need to end before a SCIM deactivation arrives. Deactivating a user also ends their sessions.
+        /// Sign a user out of everywhere they&apos;re logged in: dashboard, plus any mobile app, desktop app, or MCP clients they&apos;ve connected to via OAuth.This doesn&apos;t deactivate the user. They will be able to log back into those accounts, and it won&apos;t revoke any personal API keys they&apos;ve created.This is useful in the case of a compromised device or as part of urgent user deactivation.Note that when a user is deactivated, all of this happens automatically without you having to take an explicit action.
         /// </summary>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -80,7 +80,7 @@ namespace IncidentIo.V2.Users.Item.Actions.RevokeSessions
             await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// End every active session for a user.Dashboard sessions stop working on the next request. Mobile, desktop app, and MCP sessions end as well: each registered device is signed out. The user remains active and can sign in again. Personal API keys are not revoked. A user cannot end sessions for someone with a higher role. An API key with this scope can.Use this during deprovisioning when sessions need to end before a SCIM deactivation arrives. Deactivating a user also ends their sessions.
+        /// Sign a user out of everywhere they&apos;re logged in: dashboard, plus any mobile app, desktop app, or MCP clients they&apos;ve connected to via OAuth.This doesn&apos;t deactivate the user. They will be able to log back into those accounts, and it won&apos;t revoke any personal API keys they&apos;ve created.This is useful in the case of a compromised device or as part of urgent user deactivation.Note that when a user is deactivated, all of this happens automatically without you having to take an explicit action.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
