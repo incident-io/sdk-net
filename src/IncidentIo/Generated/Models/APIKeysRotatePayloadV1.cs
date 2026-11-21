@@ -14,6 +14,8 @@ namespace IncidentIo.Models
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
+        /// <summary>A new expiry for the API key. Leave it blank to keep its current expiry. It must be in the future and within your organization&apos;s maximum lifetime for API keys.</summary>
+        public DateTimeOffset? ExpiresAt { get; set; }
         /// <summary>How many minutes to keep the old access token alive.</summary>
         public long? GracePeriodMinutes { get; set; }
         /// <summary>
@@ -42,6 +44,7 @@ namespace IncidentIo.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
+                { "expires_at", n => { ExpiresAt = n.GetDateTimeOffsetValue(); } },
                 { "grace_period_minutes", n => { GracePeriodMinutes = n.GetLongValue(); } },
             };
         }
@@ -52,6 +55,7 @@ namespace IncidentIo.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
+            writer.WriteDateTimeOffsetValue("expires_at", ExpiresAt);
             writer.WriteLongValue("grace_period_minutes", GracePeriodMinutes);
             writer.WriteAdditionalData(AdditionalData);
         }

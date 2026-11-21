@@ -22,6 +22,8 @@ namespace IncidentIo.Models
 #else
         public string Comments { get; set; }
 #endif
+        /// <summary>When the API key stops working. Leave it out for a key that never expires. It must be in the future and within your organization&apos;s maximum lifetime for API keys.</summary>
+        public DateTimeOffset? ExpiresAt { get; set; }
         /// <summary>Human-readable name for the new API key</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -80,6 +82,7 @@ namespace IncidentIo.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "comments", n => { Comments = n.GetStringValue(); } },
+                { "expires_at", n => { ExpiresAt = n.GetDateTimeOffsetValue(); } },
                 { "name", n => { Name = n.GetStringValue(); } },
                 { "role_names", n => { RoleNames = n.GetCollectionOfEnumValues<global::IncidentIo.Models.APIKeysCreatePayloadV1RoleNames>()?.AsList(); } },
                 { "team_ids", n => { TeamIds = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
@@ -94,6 +97,7 @@ namespace IncidentIo.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("comments", Comments);
+            writer.WriteDateTimeOffsetValue("expires_at", ExpiresAt);
             writer.WriteStringValue("name", Name);
             writer.WriteCollectionOfEnumValues<global::IncidentIo.Models.APIKeysCreatePayloadV1RoleNames>("role_names", RoleNames);
             writer.WriteCollectionOfPrimitiveValues<string>("team_ids", TeamIds);

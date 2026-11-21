@@ -179,6 +179,7 @@
               "slack_user_id": "U02AYNF2XJM"
             }
           },
+          "expires_at": "2022-08-17T13:28:57.801578Z",
           "id": "01FCNDV6P870EA6S7TK1DSYDG0",
           "last_used_at": "2021-08-17T13:28:57.801578Z",
           "name": "My test API key",
@@ -215,6 +216,12 @@
           },
           "creator": {
             "$ref": "#/components/schemas/ActorV1"
+          },
+          "expires_at": {
+            "description": "When this API key stops working. If it's not set, the key never expires.",
+            "example": "2022-08-17T13:28:57.801578Z",
+            "format": "date-time",
+            "type": "string"
           },
           "id": {
             "description": "Unique identifier for this API key",
@@ -291,6 +298,7 @@
       "APIKeysCreatePayloadV1": {
         "example": {
           "comments": "Requested in https://example.slack.com/archives/C123/p456",
+          "expires_at": "2022-08-17T13:28:57.801578Z",
           "name": "My test API key",
           "role_names": [
             "viewer",
@@ -309,6 +317,12 @@
             "example": "Requested in https://example.slack.com/archives/C123/p456",
             "maxLength": 5000,
             "pattern": "^[^\u0000]*$",
+            "type": "string"
+          },
+          "expires_at": {
+            "description": "When the API key stops working. Leave it out for a key that never expires. It must be in the future and within your organization's maximum lifetime for API keys.",
+            "example": "2022-08-17T13:28:57.801578Z",
+            "format": "date-time",
             "type": "string"
           },
           "name": {
@@ -446,6 +460,7 @@
                 "slack_user_id": "U02AYNF2XJM"
               }
             },
+            "expires_at": "2022-08-17T13:28:57.801578Z",
             "id": "01FCNDV6P870EA6S7TK1DSYDG0",
             "last_used_at": "2021-08-17T13:28:57.801578Z",
             "name": "My test API key",
@@ -503,6 +518,7 @@
                   "slack_user_id": "U02AYNF2XJM"
                 }
               },
+              "expires_at": "2022-08-17T13:28:57.801578Z",
               "id": "01FCNDV6P870EA6S7TK1DSYDG0",
               "last_used_at": "2021-08-17T13:28:57.801578Z",
               "name": "My test API key",
@@ -548,6 +564,7 @@
                     "slack_user_id": "U02AYNF2XJM"
                   }
                 },
+                "expires_at": "2022-08-17T13:28:57.801578Z",
                 "id": "01FCNDV6P870EA6S7TK1DSYDG0",
                 "last_used_at": "2021-08-17T13:28:57.801578Z",
                 "name": "My test API key",
@@ -586,9 +603,16 @@
       },
       "APIKeysRotatePayloadV1": {
         "example": {
+          "expires_at": "2022-08-17T13:28:57.801578Z",
           "grace_period_minutes": 30
         },
         "properties": {
+          "expires_at": {
+            "description": "A new expiry for the API key. Leave it blank to keep its current expiry. It must be in the future and within your organization's maximum lifetime for API keys.",
+            "example": "2022-08-17T13:28:57.801578Z",
+            "format": "date-time",
+            "type": "string"
+          },
           "grace_period_minutes": {
             "default": 30,
             "description": "How many minutes to keep the old access token alive.",
@@ -622,6 +646,7 @@
                 "slack_user_id": "U02AYNF2XJM"
               }
             },
+            "expires_at": "2022-08-17T13:28:57.801578Z",
             "id": "01FCNDV6P870EA6S7TK1DSYDG0",
             "last_used_at": "2021-08-17T13:28:57.801578Z",
             "name": "My test API key",
@@ -678,6 +703,7 @@
                 "slack_user_id": "U02AYNF2XJM"
               }
             },
+            "expires_at": "2022-08-17T13:28:57.801578Z",
             "id": "01FCNDV6P870EA6S7TK1DSYDG0",
             "last_used_at": "2021-08-17T13:28:57.801578Z",
             "name": "My test API key",
@@ -867,6 +893,7 @@
                 "slack_user_id": "U02AYNF2XJM"
               }
             },
+            "expires_at": "2022-08-17T13:28:57.801578Z",
             "id": "01FCNDV6P870EA6S7TK1DSYDG0",
             "last_used_at": "2021-08-17T13:28:57.801578Z",
             "name": "My test API key",
@@ -134324,6 +134351,7 @@
                           "slack_user_id": "U02AYNF2XJM"
                         }
                       },
+                      "expires_at": "2022-08-17T13:28:57.801578Z",
                       "id": "01FCNDV6P870EA6S7TK1DSYDG0",
                       "last_used_at": "2021-08-17T13:28:57.801578Z",
                       "name": "My test API key",
@@ -134510,6 +134538,7 @@
             "application/json": {
               "example": {
                 "comments": "Requested in https://example.slack.com/archives/C123/p456",
+                "expires_at": "2022-08-17T13:28:57.801578Z",
                 "name": "My test API key",
                 "role_names": [
                   "viewer",
@@ -134550,6 +134579,7 @@
                         "slack_user_id": "U02AYNF2XJM"
                       }
                     },
+                    "expires_at": "2022-08-17T13:28:57.801578Z",
                     "id": "01FCNDV6P870EA6S7TK1DSYDG0",
                     "last_used_at": "2021-08-17T13:28:57.801578Z",
                     "name": "My test API key",
@@ -134930,6 +134960,7 @@
                         "slack_user_id": "U02AYNF2XJM"
                       }
                     },
+                    "expires_at": "2022-08-17T13:28:57.801578Z",
                     "id": "01FCNDV6P870EA6S7TK1DSYDG0",
                     "last_used_at": "2021-08-17T13:28:57.801578Z",
                     "name": "My test API key",
@@ -135165,6 +135196,7 @@
                         "slack_user_id": "U02AYNF2XJM"
                       }
                     },
+                    "expires_at": "2022-08-17T13:28:57.801578Z",
                     "id": "01FCNDV6P870EA6S7TK1DSYDG0",
                     "last_used_at": "2021-08-17T13:28:57.801578Z",
                     "name": "My test API key",
@@ -135361,6 +135393,7 @@
           "content": {
             "application/json": {
               "example": {
+                "expires_at": "2022-08-17T13:28:57.801578Z",
                 "grace_period_minutes": 30
               },
               "schema": {
@@ -135391,6 +135424,7 @@
                         "slack_user_id": "U02AYNF2XJM"
                       }
                     },
+                    "expires_at": "2022-08-17T13:28:57.801578Z",
                     "id": "01FCNDV6P870EA6S7TK1DSYDG0",
                     "last_used_at": "2021-08-17T13:28:57.801578Z",
                     "name": "My test API key",

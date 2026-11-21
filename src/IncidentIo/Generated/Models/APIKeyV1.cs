@@ -32,6 +32,8 @@ namespace IncidentIo.Models
 #else
         public global::IncidentIo.Models.ActorV1 Creator { get; set; }
 #endif
+        /// <summary>When this API key stops working. If it&apos;s not set, the key never expires.</summary>
+        public DateTimeOffset? ExpiresAt { get; set; }
         /// <summary>Unique identifier for this API key</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -104,6 +106,7 @@ namespace IncidentIo.Models
                 { "comments", n => { Comments = n.GetStringValue(); } },
                 { "created_at", n => { CreatedAt = n.GetDateTimeOffsetValue(); } },
                 { "creator", n => { Creator = n.GetObjectValue<global::IncidentIo.Models.ActorV1>(global::IncidentIo.Models.ActorV1.CreateFromDiscriminatorValue); } },
+                { "expires_at", n => { ExpiresAt = n.GetDateTimeOffsetValue(); } },
                 { "id", n => { Id = n.GetStringValue(); } },
                 { "last_used_at", n => { LastUsedAt = n.GetDateTimeOffsetValue(); } },
                 { "name", n => { Name = n.GetStringValue(); } },
@@ -123,6 +126,7 @@ namespace IncidentIo.Models
             writer.WriteStringValue("comments", Comments);
             writer.WriteDateTimeOffsetValue("created_at", CreatedAt);
             writer.WriteObjectValue<global::IncidentIo.Models.ActorV1>("creator", Creator);
+            writer.WriteDateTimeOffsetValue("expires_at", ExpiresAt);
             writer.WriteStringValue("id", Id);
             writer.WriteDateTimeOffsetValue("last_used_at", LastUsedAt);
             writer.WriteStringValue("name", Name);
