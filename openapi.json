@@ -22792,6 +22792,41 @@
         ],
         "type": "object"
       },
+      "AuditLogAPIKeyExpiryMetadataV2": {
+        "example": {
+          "expires_at": "2022-08-17T13:28:57Z"
+        },
+        "properties": {
+          "expires_at": {
+            "description": "When the key stops working. Absent when the key never expires.",
+            "example": "2022-08-17T13:28:57Z",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "AuditLogAPIKeyExpiryPolicyUpdatedMetadataV2": {
+        "example": {
+          "expiry_required": "true",
+          "max_lifetime_days": "90"
+        },
+        "properties": {
+          "expiry_required": {
+            "description": "Whether new API keys must have an expiry after the update",
+            "example": "true",
+            "type": "string"
+          },
+          "max_lifetime_days": {
+            "description": "The longest lifetime, in days, a new key may have after the update. Absent when there is no limit.",
+            "example": "90",
+            "type": "string"
+          }
+        },
+        "required": [
+          "expiry_required"
+        ],
+        "type": "object"
+      },
       "AuditLogActorMetadataV2": {
         "example": {
           "alert_source_id": "01FCNDV6P870EA6S7TK1DSYDG0",
@@ -25419,6 +25454,88 @@
         ],
         "type": "object"
       },
+      "AuditLogsAPIKeyCreatedV3": {
+        "example": {
+          "action": "api_key.created",
+          "actor": {
+            "id": "01FCNDV6P870EA6S7TK1DSYDG0",
+            "metadata": {
+              "user_base_role_slug": "admin",
+              "user_custom_role_slugs": "engineering,security"
+            },
+            "name": "John Doe",
+            "type": "user"
+          },
+          "context": {
+            "location": "1.2.3.4",
+            "user_agent": "Chrome/91.0.4472.114"
+          },
+          "metadata": {
+            "expires_at": "2022-08-17T13:28:57Z"
+          },
+          "occurred_at": "2021-08-17T13:28:57.801578Z",
+          "targets": [
+            {
+              "id": "01FCNDV6P870EA6S7TK1DSYDG0",
+              "name": "Development API Key",
+              "type": "api_key"
+            }
+          ],
+          "version": 3
+        },
+        "properties": {
+          "action": {
+            "description": "The type of log entry that this is",
+            "example": "api_key.created",
+            "type": "string"
+          },
+          "actor": {
+            "$ref": "#/components/schemas/AuditLogActorV2"
+          },
+          "context": {
+            "$ref": "#/components/schemas/AuditLogEntryContextV2"
+          },
+          "metadata": {
+            "$ref": "#/components/schemas/AuditLogAPIKeyExpiryMetadataV2"
+          },
+          "occurred_at": {
+            "description": "When the entry occurred",
+            "example": "2021-08-17T13:28:57.801578Z",
+            "format": "date-time",
+            "type": "string"
+          },
+          "targets": {
+            "description": "The custom field that was created",
+            "example": [
+              {
+                "id": "01FCNDV6P870EA6S7TK1DSYDG0",
+                "name": "Development API Key",
+                "type": "api_key"
+              }
+            ],
+            "items": {
+              "$ref": "#/components/schemas/AuditLogTargetV2"
+            },
+            "type": "array"
+          },
+          "version": {
+            "description": "Which version the event is",
+            "example": 3,
+            "format": "int64",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "action",
+          "occurred_at",
+          "version",
+          "actor",
+          "targets",
+          "context",
+          "metadata"
+        ],
+        "type": "object"
+      },
       "AuditLogsAPIKeyDeletedV1": {
         "example": {
           "action": "api_key.deleted",
@@ -25569,6 +25686,89 @@
         ],
         "type": "object"
       },
+      "AuditLogsAPIKeyExpiryPolicyUpdatedV1": {
+        "example": {
+          "action": "api_key_expiry_policy.updated",
+          "actor": {
+            "id": "01FCNDV6P870EA6S7TK1DSYDG0",
+            "metadata": {
+              "user_base_role_slug": "admin",
+              "user_custom_role_slugs": "engineering,security"
+            },
+            "name": "John Doe",
+            "type": "user"
+          },
+          "context": {
+            "location": "1.2.3.4",
+            "user_agent": "Chrome/91.0.4472.114"
+          },
+          "metadata": {
+            "expiry_required": "true",
+            "max_lifetime_days": "90"
+          },
+          "occurred_at": "2021-08-17T13:28:57.801578Z",
+          "targets": [
+            {
+              "id": "01FCNDV6P870EA6S7TK1DSYDG0",
+              "name": "Organisation Settings",
+              "type": "organisation_settings"
+            }
+          ],
+          "version": 1
+        },
+        "properties": {
+          "action": {
+            "description": "The type of log entry that this is",
+            "example": "api_key_expiry_policy.updated",
+            "type": "string"
+          },
+          "actor": {
+            "$ref": "#/components/schemas/AuditLogActorV2"
+          },
+          "context": {
+            "$ref": "#/components/schemas/AuditLogEntryContextV2"
+          },
+          "metadata": {
+            "$ref": "#/components/schemas/AuditLogAPIKeyExpiryPolicyUpdatedMetadataV2"
+          },
+          "occurred_at": {
+            "description": "When the entry occurred",
+            "example": "2021-08-17T13:28:57.801578Z",
+            "format": "date-time",
+            "type": "string"
+          },
+          "targets": {
+            "description": "The custom field that was created",
+            "example": [
+              {
+                "id": "01FCNDV6P870EA6S7TK1DSYDG0",
+                "name": "Organisation Settings",
+                "type": "organisation_settings"
+              }
+            ],
+            "items": {
+              "$ref": "#/components/schemas/AuditLogTargetV2"
+            },
+            "type": "array"
+          },
+          "version": {
+            "description": "Which version the event is",
+            "example": 1,
+            "format": "int64",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "action",
+          "occurred_at",
+          "version",
+          "actor",
+          "targets",
+          "context",
+          "metadata"
+        ],
+        "type": "object"
+      },
       "AuditLogsAPIKeyRotatedV1": {
         "example": {
           "action": "api_key.rotated",
@@ -25716,6 +25916,88 @@
           "actor",
           "targets",
           "context"
+        ],
+        "type": "object"
+      },
+      "AuditLogsAPIKeyRotatedV3": {
+        "example": {
+          "action": "api_key.rotated",
+          "actor": {
+            "id": "01FCNDV6P870EA6S7TK1DSYDG0",
+            "metadata": {
+              "user_base_role_slug": "admin",
+              "user_custom_role_slugs": "engineering,security"
+            },
+            "name": "John Doe",
+            "type": "user"
+          },
+          "context": {
+            "location": "1.2.3.4",
+            "user_agent": "Chrome/91.0.4472.114"
+          },
+          "metadata": {
+            "expires_at": "2022-08-17T13:28:57Z"
+          },
+          "occurred_at": "2021-08-17T13:28:57.801578Z",
+          "targets": [
+            {
+              "id": "01FCNDV6P870EA6S7TK1DSYDG0",
+              "name": "Development API Key",
+              "type": "api_key"
+            }
+          ],
+          "version": 3
+        },
+        "properties": {
+          "action": {
+            "description": "The type of log entry that this is",
+            "example": "api_key.rotated",
+            "type": "string"
+          },
+          "actor": {
+            "$ref": "#/components/schemas/AuditLogActorV2"
+          },
+          "context": {
+            "$ref": "#/components/schemas/AuditLogEntryContextV2"
+          },
+          "metadata": {
+            "$ref": "#/components/schemas/AuditLogAPIKeyExpiryMetadataV2"
+          },
+          "occurred_at": {
+            "description": "When the entry occurred",
+            "example": "2021-08-17T13:28:57.801578Z",
+            "format": "date-time",
+            "type": "string"
+          },
+          "targets": {
+            "description": "The custom field that was created",
+            "example": [
+              {
+                "id": "01FCNDV6P870EA6S7TK1DSYDG0",
+                "name": "Development API Key",
+                "type": "api_key"
+              }
+            ],
+            "items": {
+              "$ref": "#/components/schemas/AuditLogTargetV2"
+            },
+            "type": "array"
+          },
+          "version": {
+            "description": "Which version the event is",
+            "example": 3,
+            "format": "int64",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "action",
+          "occurred_at",
+          "version",
+          "actor",
+          "targets",
+          "context",
+          "metadata"
         ],
         "type": "object"
       },
@@ -61339,6 +61621,88 @@
           "actor",
           "targets",
           "context"
+        ],
+        "type": "object"
+      },
+      "AuditLogsUserAPIKeyCreatedV3": {
+        "example": {
+          "action": "user_api_key.created",
+          "actor": {
+            "id": "01FCNDV6P870EA6S7TK1DSYDG0",
+            "metadata": {
+              "user_base_role_slug": "admin",
+              "user_custom_role_slugs": "engineering,security"
+            },
+            "name": "John Doe",
+            "type": "user"
+          },
+          "context": {
+            "location": "1.2.3.4",
+            "user_agent": "Chrome/91.0.4472.114"
+          },
+          "metadata": {
+            "expires_at": "2022-08-17T13:28:57Z"
+          },
+          "occurred_at": "2021-08-17T13:28:57.801578Z",
+          "targets": [
+            {
+              "id": "01FCNDV6P870EA6S7TK1DSYDG0",
+              "name": "Development User API Key",
+              "type": "user_api_key"
+            }
+          ],
+          "version": 3
+        },
+        "properties": {
+          "action": {
+            "description": "The type of log entry that this is",
+            "example": "user_api_key.created",
+            "type": "string"
+          },
+          "actor": {
+            "$ref": "#/components/schemas/AuditLogActorV2"
+          },
+          "context": {
+            "$ref": "#/components/schemas/AuditLogEntryContextV2"
+          },
+          "metadata": {
+            "$ref": "#/components/schemas/AuditLogAPIKeyExpiryMetadataV2"
+          },
+          "occurred_at": {
+            "description": "When the entry occurred",
+            "example": "2021-08-17T13:28:57.801578Z",
+            "format": "date-time",
+            "type": "string"
+          },
+          "targets": {
+            "description": "The custom field that was created",
+            "example": [
+              {
+                "id": "01FCNDV6P870EA6S7TK1DSYDG0",
+                "name": "Development User API Key",
+                "type": "user_api_key"
+              }
+            ],
+            "items": {
+              "$ref": "#/components/schemas/AuditLogTargetV2"
+            },
+            "type": "array"
+          },
+          "version": {
+            "description": "Which version the event is",
+            "example": 3,
+            "format": "int64",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "action",
+          "occurred_at",
+          "version",
+          "actor",
+          "targets",
+          "context",
+          "metadata"
         ],
         "type": "object"
       },
@@ -226124,6 +226488,55 @@
         ]
       }
     },
+    "/x-audit-logs/api_key.created.3": {
+      "get": {
+        "description": "This entry is created whenever a api key is created",
+        "operationId": "ApiKeyCreatedV3",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "action": "api_key.created",
+                  "actor": {
+                    "id": "01FCNDV6P870EA6S7TK1DSYDG0",
+                    "metadata": {
+                      "user_base_role_slug": "admin",
+                      "user_custom_role_slugs": "engineering,security"
+                    },
+                    "name": "John Doe",
+                    "type": "user"
+                  },
+                  "context": {
+                    "location": "1.2.3.4",
+                    "user_agent": "Chrome/91.0.4472.114"
+                  },
+                  "metadata": {
+                    "expires_at": "2022-08-17T13:28:57Z"
+                  },
+                  "occurred_at": "2021-08-17T13:28:57.801578Z",
+                  "targets": [
+                    {
+                      "id": "01FCNDV6P870EA6S7TK1DSYDG0",
+                      "name": "Development API Key",
+                      "type": "api_key"
+                    }
+                  ],
+                  "version": 3
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/AuditLogsAPIKeyCreatedV3"
+                }
+              }
+            },
+            "description": "OK response."
+          }
+        },
+        "tags": [
+          "Audit logs"
+        ]
+      }
+    },
     "/x-audit-logs/api_key.deleted.1": {
       "get": {
         "description": "This entry is created whenever a api key is deleted",
@@ -226308,6 +226721,55 @@
         ]
       }
     },
+    "/x-audit-logs/api_key.rotated.3": {
+      "get": {
+        "description": "This entry is created whenever an api key is rotated",
+        "operationId": "ApiKeyRotatedV3",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "action": "api_key.rotated",
+                  "actor": {
+                    "id": "01FCNDV6P870EA6S7TK1DSYDG0",
+                    "metadata": {
+                      "user_base_role_slug": "admin",
+                      "user_custom_role_slugs": "engineering,security"
+                    },
+                    "name": "John Doe",
+                    "type": "user"
+                  },
+                  "context": {
+                    "location": "1.2.3.4",
+                    "user_agent": "Chrome/91.0.4472.114"
+                  },
+                  "metadata": {
+                    "expires_at": "2022-08-17T13:28:57Z"
+                  },
+                  "occurred_at": "2021-08-17T13:28:57.801578Z",
+                  "targets": [
+                    {
+                      "id": "01FCNDV6P870EA6S7TK1DSYDG0",
+                      "name": "Development API Key",
+                      "type": "api_key"
+                    }
+                  ],
+                  "version": 3
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/AuditLogsAPIKeyRotatedV3"
+                }
+              }
+            },
+            "description": "OK response."
+          }
+        },
+        "tags": [
+          "Audit logs"
+        ]
+      }
+    },
     "/x-audit-logs/api_key.updated.1": {
       "get": {
         "description": "This entry is created whenever a api key is updated",
@@ -226389,6 +226851,56 @@
                 },
                 "schema": {
                   "$ref": "#/components/schemas/AuditLogsAPIKeyUpdatedV2"
+                }
+              }
+            },
+            "description": "OK response."
+          }
+        },
+        "tags": [
+          "Audit logs"
+        ]
+      }
+    },
+    "/x-audit-logs/api_key_expiry_policy.updated.1": {
+      "get": {
+        "description": "This entry is created whenever the API key expiry policy is changed for an organisation",
+        "operationId": "ApiKeyExpiryPolicyUpdatedV1",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "action": "api_key_expiry_policy.updated",
+                  "actor": {
+                    "id": "01FCNDV6P870EA6S7TK1DSYDG0",
+                    "metadata": {
+                      "user_base_role_slug": "admin",
+                      "user_custom_role_slugs": "engineering,security"
+                    },
+                    "name": "John Doe",
+                    "type": "user"
+                  },
+                  "context": {
+                    "location": "1.2.3.4",
+                    "user_agent": "Chrome/91.0.4472.114"
+                  },
+                  "metadata": {
+                    "expiry_required": "true",
+                    "max_lifetime_days": "90"
+                  },
+                  "occurred_at": "2021-08-17T13:28:57.801578Z",
+                  "targets": [
+                    {
+                      "id": "01FCNDV6P870EA6S7TK1DSYDG0",
+                      "name": "Organisation Settings",
+                      "type": "organisation_settings"
+                    }
+                  ],
+                  "version": 1
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/AuditLogsAPIKeyExpiryPolicyUpdatedV1"
                 }
               }
             },
@@ -246354,6 +246866,55 @@
                 },
                 "schema": {
                   "$ref": "#/components/schemas/AuditLogsUserAPIKeyCreatedV2"
+                }
+              }
+            },
+            "description": "OK response."
+          }
+        },
+        "tags": [
+          "Audit logs"
+        ]
+      }
+    },
+    "/x-audit-logs/user_api_key.created.3": {
+      "get": {
+        "description": "This entry is created whenever a user API key is created",
+        "operationId": "UserApiKeyCreatedV3",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "action": "user_api_key.created",
+                  "actor": {
+                    "id": "01FCNDV6P870EA6S7TK1DSYDG0",
+                    "metadata": {
+                      "user_base_role_slug": "admin",
+                      "user_custom_role_slugs": "engineering,security"
+                    },
+                    "name": "John Doe",
+                    "type": "user"
+                  },
+                  "context": {
+                    "location": "1.2.3.4",
+                    "user_agent": "Chrome/91.0.4472.114"
+                  },
+                  "metadata": {
+                    "expires_at": "2022-08-17T13:28:57Z"
+                  },
+                  "occurred_at": "2021-08-17T13:28:57.801578Z",
+                  "targets": [
+                    {
+                      "id": "01FCNDV6P870EA6S7TK1DSYDG0",
+                      "name": "Development User API Key",
+                      "type": "user_api_key"
+                    }
+                  ],
+                  "version": 3
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/AuditLogsUserAPIKeyCreatedV3"
                 }
               }
             },
