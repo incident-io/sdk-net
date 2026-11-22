@@ -8,6 +8,14 @@ namespace IncidentIo.Models
     public enum ManagedResourceV2ResourceType
     #pragma warning restore CS1591
     {
+        [EnumMember(Value = "access_grant")]
+        #pragma warning disable CS1591
+        AccessGrant,
+        #pragma warning restore CS1591
+        [EnumMember(Value = "access_group")]
+        #pragma warning disable CS1591
+        AccessGroup,
+        #pragma warning restore CS1591
         [EnumMember(Value = "alert_route")]
         #pragma warning disable CS1591
         AlertRoute,
