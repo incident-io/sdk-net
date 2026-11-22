@@ -109,7 +109,8 @@
               "telemetry_viewer",
               "documents_viewer",
               "user_sessions_revoke",
-              "users_viewer"
+              "users_viewer",
+              "access_control_manage"
             ],
             "example": "viewer",
             "type": "string",
@@ -388,7 +389,8 @@
                 "telemetry_viewer",
                 "documents_viewer",
                 "user_sessions_revoke",
-                "users_viewer"
+                "users_viewer",
+                "access_control_manage"
               ],
               "example": "viewer",
               "type": "string"
@@ -821,7 +823,8 @@
                 "telemetry_viewer",
                 "documents_viewer",
                 "user_sessions_revoke",
-                "users_viewer"
+                "users_viewer",
+                "access_control_manage"
               ],
               "example": "viewer",
               "type": "string"
@@ -88312,7 +88315,8 @@
                 "telemetry_viewer",
                 "documents_viewer",
                 "user_sessions_revoke",
-                "users_viewer"
+                "users_viewer",
+                "access_control_manage"
               ],
               "example": "viewer",
               "type": "string",

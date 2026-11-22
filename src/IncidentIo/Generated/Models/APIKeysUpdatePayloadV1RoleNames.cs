@@ -204,5 +204,9 @@ namespace IncidentIo.Models
         #pragma warning disable CS1591
         UsersViewer,
         #pragma warning restore CS1591
+        [EnumMember(Value = "access_control_manage")]
+        #pragma warning disable CS1591
+        AccessControlManage,
+        #pragma warning restore CS1591
     }
 }
