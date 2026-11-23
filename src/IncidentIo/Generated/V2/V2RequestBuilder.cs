@@ -25,6 +25,7 @@ using IncidentIo.V2.GlossaryEntries;
 using IncidentIo.V2.Heartbeat;
 using IncidentIo.V2.IncidentActivityLogEntries;
 using IncidentIo.V2.IncidentAlerts;
+using IncidentIo.V2.IncidentParticipantWorkloadHours;
 using IncidentIo.V2.IncidentParticipantWorkloads;
 using IncidentIo.V2.IncidentParticipants;
 using IncidentIo.V2.IncidentRoles;
@@ -193,6 +194,11 @@ namespace IncidentIo.V2
         public global::IncidentIo.V2.IncidentAlerts.IncidentAlertsRequestBuilder IncidentAlerts
         {
             get => new global::IncidentIo.V2.IncidentAlerts.IncidentAlertsRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The incident_participant_workload_hours property</summary>
+        public global::IncidentIo.V2.IncidentParticipantWorkloadHours.IncidentParticipantWorkloadHoursRequestBuilder IncidentParticipantWorkloadHours
+        {
+            get => new global::IncidentIo.V2.IncidentParticipantWorkloadHours.IncidentParticipantWorkloadHoursRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>The incident_participant_workloads property</summary>
         public global::IncidentIo.V2.IncidentParticipantWorkloads.IncidentParticipantWorkloadsRequestBuilder IncidentParticipantWorkloads

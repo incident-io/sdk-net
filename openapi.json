@@ -94892,6 +94892,51 @@
         ],
         "type": "object"
       },
+      "IncidentParticipantWorkloadHourV2": {
+        "example": {
+          "activity_hour": "2021-08-17T13:00:00Z",
+          "incident_id": "01FCNDV6P870EA6S7TK1DSYD5H",
+          "user": {
+            "email": "lisa@incident.io",
+            "id": "01FCNDV6P870EA6S7TK1DSYDG0",
+            "name": "Lisa Karlin Curtis",
+            "role": "owner",
+            "slack_user_id": "U02AYNF2XJM"
+          },
+          "workload": {
+            "minutes_spent_on_incident": 125.5,
+            "minutes_spent_on_incident_in_late_hours": 20.5,
+            "minutes_spent_on_incident_in_sleeping_hours": 15,
+            "minutes_spent_on_incident_in_working_hours": 90
+          }
+        },
+        "properties": {
+          "activity_hour": {
+            "description": "The start of the hour this workload is for",
+            "example": "2021-08-17T13:00:00Z",
+            "format": "date-time",
+            "type": "string"
+          },
+          "incident_id": {
+            "description": "The incident the user worked on",
+            "example": "01FCNDV6P870EA6S7TK1DSYD5H",
+            "type": "string"
+          },
+          "user": {
+            "$ref": "#/components/schemas/UserV2"
+          },
+          "workload": {
+            "$ref": "#/components/schemas/WorkloadMinutesV2"
+          }
+        },
+        "required": [
+          "incident_id",
+          "user",
+          "activity_hour",
+          "workload"
+        ],
+        "type": "object"
+      },
       "IncidentParticipantWorkloadV2": {
         "example": {
           "archived_at": "2021-08-17T13:28:57.801578Z",
@@ -94937,6 +94982,75 @@
         "required": [
           "user",
           "workload"
+        ],
+        "type": "object"
+      },
+      "IncidentParticipantWorkloadsListHoursResultV2": {
+        "example": {
+          "incident_participant_workload_hours": [
+            {
+              "activity_hour": "2021-08-17T13:00:00Z",
+              "incident_id": "01FCNDV6P870EA6S7TK1DSYD5H",
+              "user": {
+                "email": "lisa@incident.io",
+                "id": "01FCNDV6P870EA6S7TK1DSYDG0",
+                "name": "Lisa Karlin Curtis",
+                "role": "owner",
+                "slack_user_id": "U02AYNF2XJM"
+              },
+              "workload": {
+                "minutes_spent_on_incident": 125.5,
+                "minutes_spent_on_incident_in_late_hours": 20.5,
+                "minutes_spent_on_incident_in_sleeping_hours": 15,
+                "minutes_spent_on_incident_in_working_hours": 90
+              }
+            }
+          ],
+          "metadata": {
+            "data_synced_at": "2021-08-17T13:00:00Z"
+          },
+          "pagination_meta": {
+            "after": "01FCNDV6P870EA6S7TK1DSYDG0",
+            "page_size": 25
+          }
+        },
+        "properties": {
+          "incident_participant_workload_hours": {
+            "example": [
+              {
+                "activity_hour": "2021-08-17T13:00:00Z",
+                "incident_id": "01FCNDV6P870EA6S7TK1DSYD5H",
+                "user": {
+                  "email": "lisa@incident.io",
+                  "id": "01FCNDV6P870EA6S7TK1DSYDG0",
+                  "name": "Lisa Karlin Curtis",
+                  "role": "owner",
+                  "slack_user_id": "U02AYNF2XJM"
+                },
+                "workload": {
+                  "minutes_spent_on_incident": 125.5,
+                  "minutes_spent_on_incident_in_late_hours": 20.5,
+                  "minutes_spent_on_incident_in_sleeping_hours": 15,
+                  "minutes_spent_on_incident_in_working_hours": 90
+                }
+              }
+            ],
+            "items": {
+              "$ref": "#/components/schemas/IncidentParticipantWorkloadHourV2"
+            },
+            "type": "array"
+          },
+          "metadata": {
+            "$ref": "#/components/schemas/WorkloadMetadataV2"
+          },
+          "pagination_meta": {
+            "$ref": "#/components/schemas/PaginationMetaResultV2"
+          }
+        },
+        "required": [
+          "incident_participant_workload_hours",
+          "metadata",
+          "pagination_meta"
         ],
         "type": "object"
       },
@@ -180786,6 +180900,266 @@
         ]
       }
     },
+    "/v2/incident_participant_workload_hours": {
+      "get": {
+        "description": "List each user's workload on each incident, hour by hour, newest first.\n\nEach row is the time one user spent on one incident in one hour. Sum the rows to get any\ntotal you need, such as the time each person spent on incidents last month. Rows come\nnewest first. To cover a period, set `before` to its end, then follow\n`pagination_meta.after` until you reach rows older than its start. A page can hold\nfewer rows than `page_size`, so keep following `after` until it is absent.\n\nWorkload is calculated periodically, so values can lag real time and the most recent period\nmay still be filling. The metadata reports the time the figures are calculated up to.\n\nWorkload on private incidents is only included for API keys with the\n`incident_workloads.view.private_incidents` scope.",
+        "operationId": "IncidentParticipantWorkloads V2#ListHours",
+        "parameters": [
+          {
+            "allowEmptyValue": true,
+            "description": "Integer number of records to return",
+            "example": 25,
+            "in": "query",
+            "name": "page_size",
+            "schema": {
+              "default": 25,
+              "description": "Integer number of records to return",
+              "example": 25,
+              "format": "int64",
+              "maximum": 250,
+              "minimum": 1,
+              "type": "integer"
+            }
+          },
+          {
+            "allowEmptyValue": true,
+            "description": "The cursor from a previous response's `pagination_meta.after`. Returns the rows older than that page.",
+            "examples": {
+              "default": {
+                "summary": "default",
+                "value": "1795345200_01FCNDV6P870EA6S7TK1DSYD5H_01FCNDV6P870EA6S7TK1DSYD5J"
+              }
+            },
+            "in": "query",
+            "name": "after",
+            "schema": {
+              "description": "The cursor from a previous response's `pagination_meta.after`. Returns the rows older than that page.",
+              "example": "1795345200_01FCNDV6P870EA6S7TK1DSYD5H_01FCNDV6P870EA6S7TK1DSYD5J",
+              "type": "string"
+            }
+          },
+          {
+            "allowEmptyValue": true,
+            "description": "Only return hours that start before this time",
+            "example": "2026-11-01T00:00:00Z",
+            "in": "query",
+            "name": "before",
+            "schema": {
+              "description": "Only return hours that start before this time",
+              "example": "2026-11-01T00:00:00Z",
+              "format": "date-time",
+              "type": "string"
+            }
+          },
+          {
+            "allowEmptyValue": true,
+            "description": "Only return workload on this incident",
+            "example": "01FCNDV6P870EA6S7TK1DSYD5H",
+            "in": "query",
+            "name": "incident_id",
+            "schema": {
+              "description": "Only return workload on this incident",
+              "example": "01FCNDV6P870EA6S7TK1DSYD5H",
+              "type": "string"
+            }
+          },
+          {
+            "allowEmptyValue": true,
+            "description": "Only return workload for this user",
+            "example": "01FCNDV6P870EA6S7TK1DSYD5J",
+            "in": "query",
+            "name": "user_id",
+            "schema": {
+              "description": "Only return workload for this user",
+              "example": "01FCNDV6P870EA6S7TK1DSYD5J",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "incident_participant_workload_hours": [
+                    {
+                      "activity_hour": "2021-08-17T13:00:00Z",
+                      "incident_id": "01FCNDV6P870EA6S7TK1DSYD5H",
+                      "user": {
+                        "email": "lisa@incident.io",
+                        "id": "01FCNDV6P870EA6S7TK1DSYDG0",
+                        "name": "Lisa Karlin Curtis",
+                        "role": "owner",
+                        "slack_user_id": "U02AYNF2XJM"
+                      },
+                      "workload": {
+                        "minutes_spent_on_incident": 125.5,
+                        "minutes_spent_on_incident_in_late_hours": 20.5,
+                        "minutes_spent_on_incident_in_sleeping_hours": 15,
+                        "minutes_spent_on_incident_in_working_hours": 90
+                      }
+                    }
+                  ],
+                  "metadata": {
+                    "data_synced_at": "2021-08-17T13:00:00Z"
+                  },
+                  "pagination_meta": {
+                    "after": "01FCNDV6P870EA6S7TK1DSYDG0",
+                    "page_size": 25
+                  }
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/IncidentParticipantWorkloadsListHoursResultV2"
+                }
+              }
+            },
+            "description": "OK response."
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "invalid_request_error: There was a problem with the request, like a missing header or querying a resource that doesn't exist."
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "authentication_error: Authentication failed."
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "resource_forbidden: Access to this resource is forbidden for the authenticated user."
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "not_found: The referenced resource could not be found."
+          },
+          "405": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "method_not_allowed: The endpoint does not support this operation for the specified resource."
+          },
+          "406": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "not_acceptable: Requested a media type this endpoint does not support."
+          },
+          "408": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "request_timeout: The request took too long to process.\n\nclient_timeout: The request was cancelled by the client."
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "conflict: Request conflicted with current state of the resource, likely a concurrent update."
+          },
+          "412": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "precondition_failed: A required condition hasn't been met."
+          },
+          "413": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "payload_too_large: The request payload is too large."
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "validation_error: A required field was not provided, or the provided data was invalid."
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "too_many_requests: Too many requests hit the API too quickly. We recommend an exponential backoff of your requests.\n\nrate_limit_reached: The rate limit associated with this resource or API key has been exceeded. Try again later."
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "api_error: Something went wrong and has been reported internally."
+          }
+        },
+        "summary": "ListHours IncidentParticipantWorkloads V2",
+        "tags": [
+          "IncidentParticipantWorkloads V2"
+        ],
+        "x-docs-display-name": "List hours",
+        "x-docs-group-name": "Incident Participant Workloads V2",
+        "x-mint": {
+          "content": "🔑 Requires the `incident_workloads.view` scope."
+        },
+        "x-rbac-scopes": [
+          "incident_workloads.view"
+        ]
+      }
+    },
     "/v2/incident_participant_workloads": {
       "get": {
         "description": "List the participants of an incident with their workload.\n\nWe calculate how much time each participant has spent working on the incident, aggregated\nper participant. Each participant is annotated with their participant type and, if they have\nleft the incident, when they were archived.\n\nWorkload is calculated periodically, so values can lag real time and the most recent period\nmay still be filling. The metadata reports the time the figures are calculated up to.\n\nWorkload for private incidents is only returned to API keys with the\n`incident_workloads.view.private_incidents` scope.",
@@ -180977,7 +181351,6 @@
         ],
         "x-docs-display-name": "List",
         "x-docs-group-name": "Incident Participant Workloads V2",
-        "x-docs-resource-type": "IncidentParticipantWorkloadV2",
         "x-mint": {
           "content": "🔑 Requires the `incident_workloads.view` scope."
         },
