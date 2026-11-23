@@ -15,6 +15,10 @@ namespace IncidentIo.Models
         #pragma warning disable CS1591
         AccessGroup,
         #pragma warning restore CS1591
+        [EnumMember(Value = "alert_grouping_preference")]
+        #pragma warning disable CS1591
+        AlertGroupingPreference,
+        #pragma warning restore CS1591
         [EnumMember(Value = "alert_route")]
         #pragma warning disable CS1591
         AlertRoute,

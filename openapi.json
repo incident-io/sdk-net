@@ -105735,6 +105735,7 @@
             "enum": [
               "access_grant",
               "access_group",
+              "alert_grouping_preference",
               "alert_route",
               "alert_rule",
               "alert_source",
@@ -105801,6 +105802,7 @@
             "enum": [
               "access_grant",
               "access_group",
+              "alert_grouping_preference",
               "alert_route",
               "alert_rule",
               "alert_source",
