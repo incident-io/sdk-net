@@ -16,6 +16,14 @@ namespace IncidentIo.Models
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Use AI to group similar looking alerts. AI alert grouping can only group alerts that are attributed to the same team, so grouping keys must only contain the team alert attribute. Private alerts are not grouped unless AI incident access allows private incidents and alerts. Omit it on an update to keep the current value.</summary>
         public bool? AiEnabled { get; set; }
+        /// <summary>Optional instructions the model follows when AI groups alerts on this route, such as how the systems you run relate to each other. Up to 2000 characters.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? AiInstructions { get; set; }
+#nullable restore
+#else
+        public string AiInstructions { get; set; }
+#endif
         /// <summary>Whether grouping is enabled</summary>
         public bool? Enabled { get; set; }
         /// <summary>Which attributes should this alert route use to group alerts? Only set when grouping is enabled.</summary>
@@ -56,6 +64,7 @@ namespace IncidentIo.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "ai_enabled", n => { AiEnabled = n.GetBoolValue(); } },
+                { "ai_instructions", n => { AiInstructions = n.GetStringValue(); } },
                 { "enabled", n => { Enabled = n.GetBoolValue(); } },
                 { "grouping_keys", n => { GroupingKeys = n.GetCollectionOfObjectValues<global::IncidentIo.Models.GroupingKeyV3>(global::IncidentIo.Models.GroupingKeyV3.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "window_seconds", n => { WindowSeconds = n.GetIntValue(); } },
@@ -70,6 +79,7 @@ namespace IncidentIo.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteBoolValue("ai_enabled", AiEnabled);
+            writer.WriteStringValue("ai_instructions", AiInstructions);
             writer.WriteBoolValue("enabled", Enabled);
             writer.WriteCollectionOfObjectValues<global::IncidentIo.Models.GroupingKeyV3>("grouping_keys", GroupingKeys);
             writer.WriteIntValue("window_seconds", WindowSeconds);

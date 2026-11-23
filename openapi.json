@@ -3781,6 +3781,7 @@
         "example": {
           "default": {
             "ai_enabled": false,
+            "ai_instructions": "Alerts from the old and new clusters describe the same outage, so group them together.",
             "enabled": true,
             "grouping_keys": [
               {
@@ -9121,6 +9122,7 @@
           "grouping_config": {
             "default": {
               "ai_enabled": false,
+              "ai_instructions": "Alerts from the old and new clusters describe the same outage, so group them together.",
               "enabled": true,
               "grouping_keys": [
                 {
@@ -10745,6 +10747,7 @@
           "grouping_config": {
             "default": {
               "ai_enabled": false,
+              "ai_instructions": "Alerts from the old and new clusters describe the same outage, so group them together.",
               "enabled": true,
               "grouping_keys": [
                 {
@@ -12057,6 +12060,7 @@
             "grouping_config": {
               "default": {
                 "ai_enabled": false,
+                "ai_instructions": "Alerts from the old and new clusters describe the same outage, so group them together.",
                 "enabled": true,
                 "grouping_keys": [
                   {
@@ -13226,6 +13230,7 @@
             "grouping_config": {
               "default": {
                 "ai_enabled": false,
+                "ai_instructions": "Alerts from the old and new clusters describe the same outage, so group them together.",
                 "enabled": true,
                 "grouping_keys": [
                   {
@@ -14509,6 +14514,7 @@
           "grouping_config": {
             "default": {
               "ai_enabled": false,
+              "ai_instructions": "Alerts from the old and new clusters describe the same outage, so group them together.",
               "enabled": true,
               "grouping_keys": [
                 {
@@ -15829,6 +15835,7 @@
             "grouping_config": {
               "default": {
                 "ai_enabled": false,
+                "ai_instructions": "Alerts from the old and new clusters describe the same outage, so group them together.",
                 "enabled": true,
                 "grouping_keys": [
                   {
@@ -87964,6 +87971,7 @@
       "GroupingSettingsV3": {
         "example": {
           "ai_enabled": false,
+          "ai_instructions": "Alerts from the old and new clusters describe the same outage, so group them together.",
           "enabled": true,
           "grouping_keys": [
             {
@@ -87978,6 +87986,11 @@
             "description": "Use AI to group similar looking alerts. AI alert grouping can only group alerts that are attributed to the same team, so grouping keys must only contain the team alert attribute. Private alerts are not grouped unless AI incident access allows private incidents and alerts. Omit it on an update to keep the current value.",
             "example": false,
             "type": "boolean"
+          },
+          "ai_instructions": {
+            "description": "Optional instructions the model follows when AI groups alerts on this route, such as how the systems you run relate to each other. Up to 2000 characters.",
+            "example": "Alerts from the old and new clusters describe the same outage, so group them together.",
+            "type": "string"
           },
           "enabled": {
             "description": "Whether grouping is enabled",
@@ -213344,6 +213357,7 @@
                 "grouping_config": {
                   "default": {
                     "ai_enabled": false,
+                    "ai_instructions": "Alerts from the old and new clusters describe the same outage, so group them together.",
                     "enabled": true,
                     "grouping_keys": [
                       {
@@ -213864,6 +213878,7 @@
                     "grouping_config": {
                       "default": {
                         "ai_enabled": false,
+                        "ai_instructions": "Alerts from the old and new clusters describe the same outage, so group them together.",
                         "enabled": true,
                         "grouping_keys": [
                           {
@@ -214730,6 +214745,7 @@
                     "grouping_config": {
                       "default": {
                         "ai_enabled": false,
+                        "ai_instructions": "Alerts from the old and new clusters describe the same outage, so group them together.",
                         "enabled": true,
                         "grouping_keys": [
                           {
@@ -215391,6 +215407,7 @@
                 "grouping_config": {
                   "default": {
                     "ai_enabled": false,
+                    "ai_instructions": "Alerts from the old and new clusters describe the same outage, so group them together.",
                     "enabled": true,
                     "grouping_keys": [
                       {
@@ -215912,6 +215929,7 @@
                     "grouping_config": {
                       "default": {
                         "ai_enabled": false,
+                        "ai_instructions": "Alerts from the old and new clusters describe the same outage, so group them together.",
                         "enabled": true,
                         "grouping_keys": [
                           {
