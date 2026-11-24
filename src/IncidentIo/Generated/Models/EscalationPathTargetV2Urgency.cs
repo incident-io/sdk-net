@@ -3,7 +3,7 @@ using System.Runtime.Serialization;
 using System;
 namespace IncidentIo.Models
 {
-    /// <summary>The urgency of this escalation path target</summary>
+    /// <summary>The interruption level we notify this target at: high or low</summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public enum EscalationPathTargetV2Urgency
     {

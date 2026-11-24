@@ -63666,7 +63666,7 @@
             "x-public-api-version": "v2"
           },
           "urgency": {
-            "description": "The urgency of this escalation path target",
+            "description": "The interruption level we notify this target at: high or low",
             "enum": [
               "high",
               "low"
@@ -74624,7 +74624,7 @@
             "x-public-api-version": "v2"
           },
           "urgency": {
-            "description": "The urgency of this escalation path target",
+            "description": "The interruption level we notify this target at: high or low",
             "enum": [
               "high",
               "low"
@@ -74701,7 +74701,7 @@
             "x-public-api-version": "v2"
           },
           "urgency": {
-            "description": "The urgency of this escalation path target",
+            "description": "The interruption level we notify this target at: high or low",
             "enum": [
               "high",
               "low"
@@ -74779,7 +74779,7 @@
             "x-public-api-version": "v2"
           },
           "urgency": {
-            "description": "The urgency of this escalation path target",
+            "description": "The interruption level we notify this target at: high or low",
             "enum": [
               "high",
               "low"

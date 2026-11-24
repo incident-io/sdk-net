@@ -34,7 +34,7 @@ namespace IncidentIo.Models
 #endif
         /// <summary>Controls what type of entity this target identifies, such as EscalationPolicy or User</summary>
         public global::IncidentIo.Models.EscalationPathTargetV2Type? Type { get; set; }
-        /// <summary>The urgency of this escalation path target</summary>
+        /// <summary>The interruption level we notify this target at: high or low</summary>
         public global::IncidentIo.Models.EscalationPathTargetV2Urgency? Urgency { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::IncidentIo.Models.EscalationPathTargetV2"/> and sets the default values.

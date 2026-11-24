@@ -35,7 +35,7 @@ namespace IncidentIo.Models
 #endif
         /// <summary>Whether a call route target is a user or a schedule</summary>
         public global::IncidentIo.Models.CallRouteTargetV2Type? Type { get; set; }
-        /// <summary>The urgency of this escalation path target</summary>
+        /// <summary>The interruption level we notify this target at: high or low</summary>
         public global::IncidentIo.Models.CallRouteTargetV2Urgency? Urgency { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::IncidentIo.Models.CallRouteTargetV2"/> and sets the default values.
