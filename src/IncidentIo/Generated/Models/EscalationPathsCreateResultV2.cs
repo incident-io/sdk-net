@@ -7,30 +7,37 @@ using System.IO;
 using System;
 namespace IncidentIo.Models
 {
-    /// <summary>
-    /// For a templated path, the values to bind to the template&apos;s declared parameters, keyed by parameter name.
-    /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    public partial class EscalationsUpdatePathPayloadV2ParamBindings : IAdditionalDataHolder, IParsable
+    #pragma warning disable CS1591
+    public partial class EscalationPathsCreateResultV2 : IAdditionalDataHolder, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
+        /// <summary>The escalation_path property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::IncidentIo.Models.EscalationPathV2? EscalationPath { get; set; }
+#nullable restore
+#else
+        public global::IncidentIo.Models.EscalationPathV2 EscalationPath { get; set; }
+#endif
         /// <summary>
-        /// Instantiates a new <see cref="global::IncidentIo.Models.EscalationsUpdatePathPayloadV2ParamBindings"/> and sets the default values.
+        /// Instantiates a new <see cref="global::IncidentIo.Models.EscalationPathsCreateResultV2"/> and sets the default values.
         /// </summary>
-        public EscalationsUpdatePathPayloadV2ParamBindings()
+        public EscalationPathsCreateResultV2()
         {
             AdditionalData = new Dictionary<string, object>();
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="global::IncidentIo.Models.EscalationsUpdatePathPayloadV2ParamBindings"/></returns>
+        /// <returns>A <see cref="global::IncidentIo.Models.EscalationPathsCreateResultV2"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static global::IncidentIo.Models.EscalationsUpdatePathPayloadV2ParamBindings CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static global::IncidentIo.Models.EscalationPathsCreateResultV2 CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::IncidentIo.Models.EscalationsUpdatePathPayloadV2ParamBindings();
+            return new global::IncidentIo.Models.EscalationPathsCreateResultV2();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -40,6 +47,7 @@ namespace IncidentIo.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
+                { "escalation_path", n => { EscalationPath = n.GetObjectValue<global::IncidentIo.Models.EscalationPathV2>(global::IncidentIo.Models.EscalationPathV2.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -49,6 +57,7 @@ namespace IncidentIo.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
+            writer.WriteObjectValue<global::IncidentIo.Models.EscalationPathV2>("escalation_path", EscalationPath);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

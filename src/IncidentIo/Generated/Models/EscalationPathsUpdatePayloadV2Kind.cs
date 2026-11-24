@@ -5,7 +5,7 @@ namespace IncidentIo.Models
 {
     /// <summary>Whether this path carries its own nodes, or is built from an escalation path template.</summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    public enum EscalationsUpdatePathPayloadV2Kind
+    public enum EscalationPathsUpdatePayloadV2Kind
     {
         [EnumMember(Value = "standalone")]
         #pragma warning disable CS1591

@@ -9,13 +9,13 @@ namespace IncidentIo.Models
 {
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     #pragma warning disable CS1591
-    public partial class EscalationsUpdatePathPayloadV2 : IAdditionalDataHolder, IParsable
+    public partial class EscalationPathsUpdatePayloadV2 : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Whether this path carries its own nodes, or is built from an escalation path template.</summary>
-        public global::IncidentIo.Models.EscalationsUpdatePathPayloadV2Kind? Kind { get; set; }
+        public global::IncidentIo.Models.EscalationPathsUpdatePayloadV2Kind? Kind { get; set; }
         /// <summary>The name of this escalation path, for the user&apos;s reference.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -27,10 +27,10 @@ namespace IncidentIo.Models
         /// <summary>For a templated path, the values to bind to the template&apos;s declared parameters, keyed by parameter name.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::IncidentIo.Models.EscalationsUpdatePathPayloadV2ParamBindings? ParamBindings { get; set; }
+        public global::IncidentIo.Models.EscalationPathsUpdatePayloadV2ParamBindings? ParamBindings { get; set; }
 #nullable restore
 #else
-        public global::IncidentIo.Models.EscalationsUpdatePathPayloadV2ParamBindings ParamBindings { get; set; }
+        public global::IncidentIo.Models.EscalationPathsUpdatePayloadV2ParamBindings ParamBindings { get; set; }
 #endif
         /// <summary>The nodes that form the levels and branches of this escalation path.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -73,21 +73,21 @@ namespace IncidentIo.Models
         public List<global::IncidentIo.Models.WeekdayIntervalConfigV2> WorkingHours { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="global::IncidentIo.Models.EscalationsUpdatePathPayloadV2"/> and sets the default values.
+        /// Instantiates a new <see cref="global::IncidentIo.Models.EscalationPathsUpdatePayloadV2"/> and sets the default values.
         /// </summary>
-        public EscalationsUpdatePathPayloadV2()
+        public EscalationPathsUpdatePayloadV2()
         {
             AdditionalData = new Dictionary<string, object>();
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="global::IncidentIo.Models.EscalationsUpdatePathPayloadV2"/></returns>
+        /// <returns>A <see cref="global::IncidentIo.Models.EscalationPathsUpdatePayloadV2"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static global::IncidentIo.Models.EscalationsUpdatePathPayloadV2 CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static global::IncidentIo.Models.EscalationPathsUpdatePayloadV2 CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::IncidentIo.Models.EscalationsUpdatePathPayloadV2();
+            return new global::IncidentIo.Models.EscalationPathsUpdatePayloadV2();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -97,9 +97,9 @@ namespace IncidentIo.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "kind", n => { Kind = n.GetEnumValue<global::IncidentIo.Models.EscalationsUpdatePathPayloadV2Kind>(); } },
+                { "kind", n => { Kind = n.GetEnumValue<global::IncidentIo.Models.EscalationPathsUpdatePayloadV2Kind>(); } },
                 { "name", n => { Name = n.GetStringValue(); } },
-                { "param_bindings", n => { ParamBindings = n.GetObjectValue<global::IncidentIo.Models.EscalationsUpdatePathPayloadV2ParamBindings>(global::IncidentIo.Models.EscalationsUpdatePathPayloadV2ParamBindings.CreateFromDiscriminatorValue); } },
+                { "param_bindings", n => { ParamBindings = n.GetObjectValue<global::IncidentIo.Models.EscalationPathsUpdatePayloadV2ParamBindings>(global::IncidentIo.Models.EscalationPathsUpdatePayloadV2ParamBindings.CreateFromDiscriminatorValue); } },
                 { "path", n => { Path = n.GetCollectionOfObjectValues<global::IncidentIo.Models.EscalationPathNodePayloadV2>(global::IncidentIo.Models.EscalationPathNodePayloadV2.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "repeat_config", n => { RepeatConfig = n.GetObjectValue<global::IncidentIo.Models.EscalationPathRepeatConfigV2>(global::IncidentIo.Models.EscalationPathRepeatConfigV2.CreateFromDiscriminatorValue); } },
                 { "team_ids", n => { TeamIds = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
@@ -114,9 +114,9 @@ namespace IncidentIo.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteEnumValue<global::IncidentIo.Models.EscalationsUpdatePathPayloadV2Kind>("kind", Kind);
+            writer.WriteEnumValue<global::IncidentIo.Models.EscalationPathsUpdatePayloadV2Kind>("kind", Kind);
             writer.WriteStringValue("name", Name);
-            writer.WriteObjectValue<global::IncidentIo.Models.EscalationsUpdatePathPayloadV2ParamBindings>("param_bindings", ParamBindings);
+            writer.WriteObjectValue<global::IncidentIo.Models.EscalationPathsUpdatePayloadV2ParamBindings>("param_bindings", ParamBindings);
             writer.WriteCollectionOfObjectValues<global::IncidentIo.Models.EscalationPathNodePayloadV2>("path", Path);
             writer.WriteObjectValue<global::IncidentIo.Models.EscalationPathRepeatConfigV2>("repeat_config", RepeatConfig);
             writer.WriteCollectionOfPrimitiveValues<string>("team_ids", TeamIds);

@@ -75,6 +75,14 @@ namespace IncidentIo.Models
         #pragma warning disable CS1591
         StatusPageComponent,
         #pragma warning restore CS1591
+        [EnumMember(Value = "status_page_component_property")]
+        #pragma warning disable CS1591
+        StatusPageComponentProperty,
+        #pragma warning restore CS1591
+        [EnumMember(Value = "status_page_component_property_option")]
+        #pragma warning disable CS1591
+        StatusPageComponentPropertyOption,
+        #pragma warning restore CS1591
         [EnumMember(Value = "status_page_structure")]
         #pragma warning disable CS1591
         StatusPageStructure,
