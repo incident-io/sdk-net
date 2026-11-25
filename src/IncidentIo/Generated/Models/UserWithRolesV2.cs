@@ -14,21 +14,21 @@ namespace IncidentIo.Models
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The base_role property</summary>
+        /// <summary>An access group is a named group of users. Access grants give a group itsprivileges, and every member of the group gets them.Every organisation has base groups (Owner, Admin and Standard), which can be listed andgranted privileges but not changed or deleted. Membership is managed in the dashboard orthrough SCIM, not through this API.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::IncidentIo.Models.RBACRoleV2? BaseRole { get; set; }
+        public global::IncidentIo.Models.AccessGroupV2? BaseRole { get; set; }
 #nullable restore
 #else
-        public global::IncidentIo.Models.RBACRoleV2 BaseRole { get; set; }
+        public global::IncidentIo.Models.AccessGroupV2 BaseRole { get; set; }
 #endif
-        /// <summary>The custom_roles property</summary>
+        /// <summary>The custom access groups the user is in</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::IncidentIo.Models.RBACRoleV2>? CustomRoles { get; set; }
+        public List<global::IncidentIo.Models.AccessGroupV2>? CustomRoles { get; set; }
 #nullable restore
 #else
-        public List<global::IncidentIo.Models.RBACRoleV2> CustomRoles { get; set; }
+        public List<global::IncidentIo.Models.AccessGroupV2> CustomRoles { get; set; }
 #endif
         /// <summary>Email address of the user.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -99,8 +99,8 @@ namespace IncidentIo.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "base_role", n => { BaseRole = n.GetObjectValue<global::IncidentIo.Models.RBACRoleV2>(global::IncidentIo.Models.RBACRoleV2.CreateFromDiscriminatorValue); } },
-                { "custom_roles", n => { CustomRoles = n.GetCollectionOfObjectValues<global::IncidentIo.Models.RBACRoleV2>(global::IncidentIo.Models.RBACRoleV2.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "base_role", n => { BaseRole = n.GetObjectValue<global::IncidentIo.Models.AccessGroupV2>(global::IncidentIo.Models.AccessGroupV2.CreateFromDiscriminatorValue); } },
+                { "custom_roles", n => { CustomRoles = n.GetCollectionOfObjectValues<global::IncidentIo.Models.AccessGroupV2>(global::IncidentIo.Models.AccessGroupV2.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "email", n => { Email = n.GetStringValue(); } },
                 { "id", n => { Id = n.GetStringValue(); } },
                 { "is_active", n => { IsActive = n.GetBoolValue(); } },
@@ -117,8 +117,8 @@ namespace IncidentIo.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<global::IncidentIo.Models.RBACRoleV2>("base_role", BaseRole);
-            writer.WriteCollectionOfObjectValues<global::IncidentIo.Models.RBACRoleV2>("custom_roles", CustomRoles);
+            writer.WriteObjectValue<global::IncidentIo.Models.AccessGroupV2>("base_role", BaseRole);
+            writer.WriteCollectionOfObjectValues<global::IncidentIo.Models.AccessGroupV2>("custom_roles", CustomRoles);
             writer.WriteStringValue("email", Email);
             writer.WriteStringValue("id", Id);
             writer.WriteBoolValue("is_active", IsActive);

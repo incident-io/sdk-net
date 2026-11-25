@@ -928,6 +928,54 @@
         ],
         "type": "object"
       },
+      "AccessGroupV2": {
+        "description": "An access group is a named group of users. Access grants give a group its\nprivileges, and every member of the group gets them.\n\nEvery organisation has base groups (Owner, Admin and Standard), which can be listed and\ngranted privileges but not changed or deleted. Membership is managed in the dashboard or\nthrough SCIM, not through this API.",
+        "example": {
+          "description": "Engineers who run the platform and its tooling",
+          "id": "01FCNDV6P870EA6S7TK1DSYDG0",
+          "name": "Platform team",
+          "slug": "platform-team",
+          "type": "custom"
+        },
+        "properties": {
+          "description": {
+            "description": "Optional description of who belongs in this group",
+            "example": "Engineers who run the platform and its tooling",
+            "type": "string"
+          },
+          "id": {
+            "description": "Unique identifier for this access group",
+            "example": "01FCNDV6P870EA6S7TK1DSYDG0",
+            "type": "string"
+          },
+          "name": {
+            "description": "Human-readable name, unique within the organisation",
+            "example": "Platform team",
+            "type": "string"
+          },
+          "slug": {
+            "description": "Stable identifier, unique within the organisation. Base groups use owner, admin and standard. Generated from the name when omitted on create, and cannot be changed later.",
+            "example": "platform-team",
+            "type": "string"
+          },
+          "type": {
+            "description": "base for the groups every organisation has, which cannot be changed or deleted, or custom for groups you create",
+            "enum": [
+              "base",
+              "custom"
+            ],
+            "example": "custom",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "slug",
+          "type"
+        ],
+        "type": "object"
+      },
       "ActionV1": {
         "example": {
           "assignee": {
@@ -115310,42 +115358,6 @@
         ],
         "type": "object"
       },
-      "RBACRoleV2": {
-        "example": {
-          "description": "Elevated permissions for the customer success team.",
-          "id": "01FCNDV6P870EA6S7TK1DSYDG0",
-          "name": "Customer Success",
-          "slug": "customer-success"
-        },
-        "properties": {
-          "description": {
-            "description": "Description of the purpose for the RBAC role",
-            "example": "Elevated permissions for the customer success team.",
-            "type": "string"
-          },
-          "id": {
-            "description": "Unique identifier of the RBAC role",
-            "example": "01FCNDV6P870EA6S7TK1DSYDG0",
-            "type": "string"
-          },
-          "name": {
-            "description": "Name of the RBAC role",
-            "example": "Customer Success",
-            "type": "string"
-          },
-          "slug": {
-            "description": "Unique human-readable slug for the RBAC role",
-            "example": "customer-success",
-            "type": "string"
-          }
-        },
-        "required": [
-          "id",
-          "name",
-          "slug"
-        ],
-        "type": "object"
-      },
       "RetrospectiveIncidentOptionsV2": {
         "example": {
           "external_id": 123,
@@ -124224,17 +124236,19 @@
       "UserWithRolesV2": {
         "example": {
           "base_role": {
-            "description": "Elevated permissions for the customer success team.",
+            "description": "Engineers who run the platform and its tooling",
             "id": "01FCNDV6P870EA6S7TK1DSYDG0",
-            "name": "Customer Success",
-            "slug": "customer-success"
+            "name": "Platform team",
+            "slug": "platform-team",
+            "type": "custom"
           },
           "custom_roles": [
             {
-              "description": "Elevated permissions for the customer success team.",
+              "description": "Engineers who run the platform and its tooling",
               "id": "01FCNDV6P870EA6S7TK1DSYDG0",
-              "name": "Customer Success",
-              "slug": "customer-success"
+              "name": "Platform team",
+              "slug": "platform-team",
+              "type": "custom"
             }
           ],
           "email": "lisa@incident.io",
@@ -124250,19 +124264,21 @@
         },
         "properties": {
           "base_role": {
-            "$ref": "#/components/schemas/RBACRoleV2"
+            "$ref": "#/components/schemas/AccessGroupV2"
           },
           "custom_roles": {
+            "description": "The custom access groups the user is in",
             "example": [
               {
-                "description": "Elevated permissions for the customer success team.",
+                "description": "Engineers who run the platform and its tooling",
                 "id": "01FCNDV6P870EA6S7TK1DSYDG0",
-                "name": "Customer Success",
-                "slug": "customer-success"
+                "name": "Platform team",
+                "slug": "platform-team",
+                "type": "custom"
               }
             ],
             "items": {
-              "$ref": "#/components/schemas/RBACRoleV2"
+              "$ref": "#/components/schemas/AccessGroupV2"
             },
             "type": "array"
           },
@@ -124425,17 +124441,19 @@
           "users": [
             {
               "base_role": {
-                "description": "Elevated permissions for the customer success team.",
+                "description": "Engineers who run the platform and its tooling",
                 "id": "01FCNDV6P870EA6S7TK1DSYDG0",
-                "name": "Customer Success",
-                "slug": "customer-success"
+                "name": "Platform team",
+                "slug": "platform-team",
+                "type": "custom"
               },
               "custom_roles": [
                 {
-                  "description": "Elevated permissions for the customer success team.",
+                  "description": "Engineers who run the platform and its tooling",
                   "id": "01FCNDV6P870EA6S7TK1DSYDG0",
-                  "name": "Customer Success",
-                  "slug": "customer-success"
+                  "name": "Platform team",
+                  "slug": "platform-team",
+                  "type": "custom"
                 }
               ],
               "email": "lisa@incident.io",
@@ -124459,17 +124477,19 @@
             "example": [
               {
                 "base_role": {
-                  "description": "Elevated permissions for the customer success team.",
+                  "description": "Engineers who run the platform and its tooling",
                   "id": "01FCNDV6P870EA6S7TK1DSYDG0",
-                  "name": "Customer Success",
-                  "slug": "customer-success"
+                  "name": "Platform team",
+                  "slug": "platform-team",
+                  "type": "custom"
                 },
                 "custom_roles": [
                   {
-                    "description": "Elevated permissions for the customer success team.",
+                    "description": "Engineers who run the platform and its tooling",
                     "id": "01FCNDV6P870EA6S7TK1DSYDG0",
-                    "name": "Customer Success",
-                    "slug": "customer-success"
+                    "name": "Platform team",
+                    "slug": "platform-team",
+                    "type": "custom"
                   }
                 ],
                 "email": "lisa@incident.io",
@@ -124519,17 +124539,19 @@
         "example": {
           "user": {
             "base_role": {
-              "description": "Elevated permissions for the customer success team.",
+              "description": "Engineers who run the platform and its tooling",
               "id": "01FCNDV6P870EA6S7TK1DSYDG0",
-              "name": "Customer Success",
-              "slug": "customer-success"
+              "name": "Platform team",
+              "slug": "platform-team",
+              "type": "custom"
             },
             "custom_roles": [
               {
-                "description": "Elevated permissions for the customer success team.",
+                "description": "Engineers who run the platform and its tooling",
                 "id": "01FCNDV6P870EA6S7TK1DSYDG0",
-                "name": "Customer Success",
-                "slug": "customer-success"
+                "name": "Platform team",
+                "slug": "platform-team",
+                "type": "custom"
               }
             ],
             "email": "lisa@incident.io",
@@ -208033,17 +208055,19 @@
                   "users": [
                     {
                       "base_role": {
-                        "description": "Elevated permissions for the customer success team.",
+                        "description": "Engineers who run the platform and its tooling",
                         "id": "01FCNDV6P870EA6S7TK1DSYDG0",
-                        "name": "Customer Success",
-                        "slug": "customer-success"
+                        "name": "Platform team",
+                        "slug": "platform-team",
+                        "type": "custom"
                       },
                       "custom_roles": [
                         {
-                          "description": "Elevated permissions for the customer success team.",
+                          "description": "Engineers who run the platform and its tooling",
                           "id": "01FCNDV6P870EA6S7TK1DSYDG0",
-                          "name": "Customer Success",
-                          "slug": "customer-success"
+                          "name": "Platform team",
+                          "slug": "platform-team",
+                          "type": "custom"
                         }
                       ],
                       "email": "lisa@incident.io",
@@ -208237,17 +208261,19 @@
                 "example": {
                   "user": {
                     "base_role": {
-                      "description": "Elevated permissions for the customer success team.",
+                      "description": "Engineers who run the platform and its tooling",
                       "id": "01FCNDV6P870EA6S7TK1DSYDG0",
-                      "name": "Customer Success",
-                      "slug": "customer-success"
+                      "name": "Platform team",
+                      "slug": "platform-team",
+                      "type": "custom"
                     },
                     "custom_roles": [
                       {
-                        "description": "Elevated permissions for the customer success team.",
+                        "description": "Engineers who run the platform and its tooling",
                         "id": "01FCNDV6P870EA6S7TK1DSYDG0",
-                        "name": "Customer Success",
-                        "slug": "customer-success"
+                        "name": "Platform team",
+                        "slug": "platform-team",
+                        "type": "custom"
                       }
                     ],
                     "email": "lisa@incident.io",

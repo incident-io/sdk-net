@@ -7,14 +7,15 @@ using System.IO;
 using System;
 namespace IncidentIo.Models
 {
+    /// <summary>
+    /// An access group is a named group of users. Access grants give a group itsprivileges, and every member of the group gets them.Every organisation has base groups (Owner, Admin and Standard), which can be listed andgranted privileges but not changed or deleted. Membership is managed in the dashboard orthrough SCIM, not through this API.
+    /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    #pragma warning disable CS1591
-    public partial class RBACRoleV2 : IAdditionalDataHolder, IParsable
-    #pragma warning restore CS1591
+    public partial class AccessGroupV2 : IAdditionalDataHolder, IParsable
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>Description of the purpose for the RBAC role</summary>
+        /// <summary>Optional description of who belongs in this group</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Description { get; set; }
@@ -22,7 +23,7 @@ namespace IncidentIo.Models
 #else
         public string Description { get; set; }
 #endif
-        /// <summary>Unique identifier of the RBAC role</summary>
+        /// <summary>Unique identifier for this access group</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Id { get; set; }
@@ -30,7 +31,7 @@ namespace IncidentIo.Models
 #else
         public string Id { get; set; }
 #endif
-        /// <summary>Name of the RBAC role</summary>
+        /// <summary>Human-readable name, unique within the organisation</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Name { get; set; }
@@ -38,7 +39,7 @@ namespace IncidentIo.Models
 #else
         public string Name { get; set; }
 #endif
-        /// <summary>Unique human-readable slug for the RBAC role</summary>
+        /// <summary>Stable identifier, unique within the organisation. Base groups use owner, admin and standard. Generated from the name when omitted on create, and cannot be changed later.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Slug { get; set; }
@@ -46,22 +47,24 @@ namespace IncidentIo.Models
 #else
         public string Slug { get; set; }
 #endif
+        /// <summary>base for the groups every organisation has, which cannot be changed or deleted, or custom for groups you create</summary>
+        public global::IncidentIo.Models.AccessGroupV2Type? Type { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="global::IncidentIo.Models.RBACRoleV2"/> and sets the default values.
+        /// Instantiates a new <see cref="global::IncidentIo.Models.AccessGroupV2"/> and sets the default values.
         /// </summary>
-        public RBACRoleV2()
+        public AccessGroupV2()
         {
             AdditionalData = new Dictionary<string, object>();
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="global::IncidentIo.Models.RBACRoleV2"/></returns>
+        /// <returns>A <see cref="global::IncidentIo.Models.AccessGroupV2"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static global::IncidentIo.Models.RBACRoleV2 CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static global::IncidentIo.Models.AccessGroupV2 CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::IncidentIo.Models.RBACRoleV2();
+            return new global::IncidentIo.Models.AccessGroupV2();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -75,6 +78,7 @@ namespace IncidentIo.Models
                 { "id", n => { Id = n.GetStringValue(); } },
                 { "name", n => { Name = n.GetStringValue(); } },
                 { "slug", n => { Slug = n.GetStringValue(); } },
+                { "type", n => { Type = n.GetEnumValue<global::IncidentIo.Models.AccessGroupV2Type>(); } },
             };
         }
         /// <summary>
@@ -88,6 +92,7 @@ namespace IncidentIo.Models
             writer.WriteStringValue("id", Id);
             writer.WriteStringValue("name", Name);
             writer.WriteStringValue("slug", Slug);
+            writer.WriteEnumValue<global::IncidentIo.Models.AccessGroupV2Type>("type", Type);
             writer.WriteAdditionalData(AdditionalData);
         }
     }
