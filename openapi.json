@@ -25167,6 +25167,23 @@
         ],
         "type": "object"
       },
+      "AlertSourceAlertmanagerOptionsV2": {
+        "example": {
+          "one_alert_per_group": true
+        },
+        "properties": {
+          "one_alert_per_group": {
+            "default": true,
+            "description": "Whether to create one alert per evaluation group or one alert per series within a group",
+            "example": true,
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "one_alert_per_group"
+        ],
+        "type": "object"
+      },
       "AlertSourceAzureDevopsOptionsV2": {
         "example": {
           "project_ids": [
@@ -25417,6 +25434,9 @@
       "AlertSourceV2": {
         "example": {
           "alert_events_url": "https://api.incident.io/v2/alert_events/http/01GW2G3V0S59R238FAHPDS1R66",
+          "alertmanager_options": {
+            "one_alert_per_group": true
+          },
           "auto_resolve_incident_alerts": false,
           "auto_resolve_timeout_minutes": 1,
           "azure_devops_options": {
@@ -25692,6 +25712,9 @@
             "example": "https://api.incident.io/v2/alert_events/http/01GW2G3V0S59R238FAHPDS1R66",
             "type": "string"
           },
+          "alertmanager_options": {
+            "$ref": "#/components/schemas/AlertSourceAlertmanagerOptionsV2"
+          },
           "auto_resolve_incident_alerts": {
             "description": "Whether alerts from this source keep counting down to auto-resolve while attached to an incident. Defaults to true. Has no effect without auto_resolve_timeout_minutes.",
             "example": false,
@@ -25870,6 +25893,9 @@
       },
       "AlertSourcesCreatePayloadV2": {
         "example": {
+          "alertmanager_options": {
+            "one_alert_per_group": true
+          },
           "auto_resolve_incident_alerts": false,
           "auto_resolve_timeout_minutes": 1,
           "azure_devops_options": {
@@ -26092,6 +26118,9 @@
           }
         },
         "properties": {
+          "alertmanager_options": {
+            "$ref": "#/components/schemas/AlertSourceAlertmanagerOptionsV2"
+          },
           "auto_resolve_incident_alerts": {
             "description": "Whether alerts from this source keep counting down to auto-resolve while attached to an incident. Defaults to true. Has no effect without auto_resolve_timeout_minutes.",
             "example": false,
@@ -26252,6 +26281,9 @@
         "example": {
           "alert_source": {
             "alert_events_url": "https://api.incident.io/v2/alert_events/http/01GW2G3V0S59R238FAHPDS1R66",
+            "alertmanager_options": {
+              "one_alert_per_group": true
+            },
             "auto_resolve_incident_alerts": false,
             "auto_resolve_timeout_minutes": 1,
             "azure_devops_options": {
@@ -26537,6 +26569,9 @@
           "alert_sources": [
             {
               "alert_events_url": "https://api.incident.io/v2/alert_events/http/01GW2G3V0S59R238FAHPDS1R66",
+              "alertmanager_options": {
+                "one_alert_per_group": true
+              },
               "auto_resolve_incident_alerts": false,
               "auto_resolve_timeout_minutes": 1,
               "azure_devops_options": {
@@ -26813,6 +26848,9 @@
             "example": [
               {
                 "alert_events_url": "https://api.incident.io/v2/alert_events/http/01GW2G3V0S59R238FAHPDS1R66",
+                "alertmanager_options": {
+                  "one_alert_per_group": true
+                },
                 "auto_resolve_incident_alerts": false,
                 "auto_resolve_timeout_minutes": 1,
                 "azure_devops_options": {
@@ -27098,6 +27136,9 @@
         "example": {
           "alert_source": {
             "alert_events_url": "https://api.incident.io/v2/alert_events/http/01GW2G3V0S59R238FAHPDS1R66",
+            "alertmanager_options": {
+              "one_alert_per_group": true
+            },
             "auto_resolve_incident_alerts": false,
             "auto_resolve_timeout_minutes": 1,
             "azure_devops_options": {
@@ -27380,6 +27421,9 @@
       },
       "AlertSourcesUpdatePayloadV2": {
         "example": {
+          "alertmanager_options": {
+            "one_alert_per_group": true
+          },
           "auto_resolve_incident_alerts": false,
           "auto_resolve_timeout_minutes": 1,
           "azure_devops_options": {
@@ -27602,6 +27646,9 @@
           }
         },
         "properties": {
+          "alertmanager_options": {
+            "$ref": "#/components/schemas/AlertSourceAlertmanagerOptionsV2"
+          },
           "auto_resolve_incident_alerts": {
             "description": "Whether alerts from this source keep counting down to auto-resolve while attached to an incident. Defaults to true. Has no effect without auto_resolve_timeout_minutes.",
             "example": false,
@@ -27702,6 +27749,9 @@
         "example": {
           "alert_source": {
             "alert_events_url": "https://api.incident.io/v2/alert_events/http/01GW2G3V0S59R238FAHPDS1R66",
+            "alertmanager_options": {
+              "one_alert_per_group": true
+            },
             "auto_resolve_incident_alerts": false,
             "auto_resolve_timeout_minutes": 1,
             "azure_devops_options": {
@@ -165457,6 +165507,9 @@
                   "alert_sources": [
                     {
                       "alert_events_url": "https://api.incident.io/v2/alert_events/http/01GW2G3V0S59R238FAHPDS1R66",
+                      "alertmanager_options": {
+                        "one_alert_per_group": true
+                      },
                       "auto_resolve_incident_alerts": false,
                       "auto_resolve_timeout_minutes": 1,
                       "azure_devops_options": {
@@ -165887,6 +165940,9 @@
           "content": {
             "application/json": {
               "example": {
+                "alertmanager_options": {
+                  "one_alert_per_group": true
+                },
                 "auto_resolve_incident_alerts": false,
                 "auto_resolve_timeout_minutes": 1,
                 "azure_devops_options": {
@@ -166122,6 +166178,9 @@
                 "example": {
                   "alert_source": {
                     "alert_events_url": "https://api.incident.io/v2/alert_events/http/01GW2G3V0S59R238FAHPDS1R66",
+                    "alertmanager_options": {
+                      "one_alert_per_group": true
+                    },
                     "auto_resolve_incident_alerts": false,
                     "auto_resolve_timeout_minutes": 1,
                     "azure_devops_options": {
@@ -167064,6 +167123,9 @@
                 "example": {
                   "alert_source": {
                     "alert_events_url": "https://api.incident.io/v2/alert_events/http/01GW2G3V0S59R238FAHPDS1R66",
+                    "alertmanager_options": {
+                      "one_alert_per_group": true
+                    },
                     "auto_resolve_incident_alerts": false,
                     "auto_resolve_timeout_minutes": 1,
                     "azure_devops_options": {
@@ -167507,6 +167569,9 @@
           "content": {
             "application/json": {
               "example": {
+                "alertmanager_options": {
+                  "one_alert_per_group": true
+                },
                 "auto_resolve_incident_alerts": false,
                 "auto_resolve_timeout_minutes": 1,
                 "azure_devops_options": {
@@ -167742,6 +167807,9 @@
                 "example": {
                   "alert_source": {
                     "alert_events_url": "https://api.incident.io/v2/alert_events/http/01GW2G3V0S59R238FAHPDS1R66",
+                    "alertmanager_options": {
+                      "one_alert_per_group": true
+                    },
                     "auto_resolve_incident_alerts": false,
                     "auto_resolve_timeout_minutes": 1,
                     "azure_devops_options": {
