@@ -73,10 +73,10 @@ namespace IncidentIo.Models
         /// <summary>Set when policy_type is on_call_readiness. The assignee is always the user the finding is about and cannot be configured.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::IncidentIo.Models.PolicyOnCallReadinessV2? OnCallReadiness { get; set; }
+        public global::IncidentIo.Models.PolicyOnCallReadinessPayloadV2? OnCallReadiness { get; set; }
 #nullable restore
 #else
-        public global::IncidentIo.Models.PolicyOnCallReadinessV2 OnCallReadiness { get; set; }
+        public global::IncidentIo.Models.PolicyOnCallReadinessPayloadV2 OnCallReadiness { get; set; }
 #endif
         /// <summary>Type of the policy, specifying what this applies to. Cannot be changed after the policy is created.</summary>
         public global::IncidentIo.Models.PoliciesCreatePayloadV2PolicyType? PolicyType { get; set; }
@@ -130,7 +130,7 @@ namespace IncidentIo.Models
                 { "expressions", n => { Expressions = n.GetCollectionOfObjectValues<global::IncidentIo.Models.ExpressionPayloadV2>(global::IncidentIo.Models.ExpressionPayloadV2.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "follow_up", n => { FollowUp = n.GetObjectValue<global::IncidentIo.Models.PolicyFollowUpPayloadV2>(global::IncidentIo.Models.PolicyFollowUpPayloadV2.CreateFromDiscriminatorValue); } },
                 { "name", n => { Name = n.GetStringValue(); } },
-                { "on_call_readiness", n => { OnCallReadiness = n.GetObjectValue<global::IncidentIo.Models.PolicyOnCallReadinessV2>(global::IncidentIo.Models.PolicyOnCallReadinessV2.CreateFromDiscriminatorValue); } },
+                { "on_call_readiness", n => { OnCallReadiness = n.GetObjectValue<global::IncidentIo.Models.PolicyOnCallReadinessPayloadV2>(global::IncidentIo.Models.PolicyOnCallReadinessPayloadV2.CreateFromDiscriminatorValue); } },
                 { "policy_type", n => { PolicyType = n.GetEnumValue<global::IncidentIo.Models.PoliciesCreatePayloadV2PolicyType>(); } },
                 { "post_mortem", n => { PostMortem = n.GetObjectValue<global::IncidentIo.Models.PolicyPostMortemPayloadV2>(global::IncidentIo.Models.PolicyPostMortemPayloadV2.CreateFromDiscriminatorValue); } },
                 { "schedule", n => { Schedule = n.GetObjectValue<global::IncidentIo.Models.PolicyScheduleV2>(global::IncidentIo.Models.PolicyScheduleV2.CreateFromDiscriminatorValue); } },
@@ -151,7 +151,7 @@ namespace IncidentIo.Models
             writer.WriteCollectionOfObjectValues<global::IncidentIo.Models.ExpressionPayloadV2>("expressions", Expressions);
             writer.WriteObjectValue<global::IncidentIo.Models.PolicyFollowUpPayloadV2>("follow_up", FollowUp);
             writer.WriteStringValue("name", Name);
-            writer.WriteObjectValue<global::IncidentIo.Models.PolicyOnCallReadinessV2>("on_call_readiness", OnCallReadiness);
+            writer.WriteObjectValue<global::IncidentIo.Models.PolicyOnCallReadinessPayloadV2>("on_call_readiness", OnCallReadiness);
             writer.WriteEnumValue<global::IncidentIo.Models.PoliciesCreatePayloadV2PolicyType>("policy_type", PolicyType);
             writer.WriteObjectValue<global::IncidentIo.Models.PolicyPostMortemPayloadV2>("post_mortem", PostMortem);
             writer.WriteObjectValue<global::IncidentIo.Models.PolicyScheduleV2>("schedule", Schedule);

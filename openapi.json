@@ -117835,7 +117835,23 @@
           "name": "Critical incidents must export follow-ups",
           "on_call_readiness": {
             "enforcement": "advisory",
+            "high_interruption_level": [
+              {
+                "max_delay_seconds": 300,
+                "method_types": [
+                  "slack"
+                ]
+              }
+            ],
             "high_urgency": [
+              {
+                "max_delay_seconds": 300,
+                "method_types": [
+                  "slack"
+                ]
+              }
+            ],
+            "low_interruption_level": [
               {
                 "max_delay_seconds": 300,
                 "method_types": [
@@ -118080,7 +118096,7 @@
             "type": "string"
           },
           "on_call_readiness": {
-            "$ref": "#/components/schemas/PolicyOnCallReadinessV2"
+            "$ref": "#/components/schemas/PolicyOnCallReadinessPayloadV2"
           },
           "policy_type": {
             "description": "Type of the policy, specifying what this applies to. Cannot be changed after the policy is created.",
@@ -118451,7 +118467,23 @@
             "name": "Critical incidents must export follow-ups",
             "on_call_readiness": {
               "enforcement": "advisory",
+              "high_interruption_level": [
+                {
+                  "max_delay_seconds": 300,
+                  "method_types": [
+                    "slack"
+                  ]
+                }
+              ],
               "high_urgency": [
+                {
+                  "max_delay_seconds": 300,
+                  "method_types": [
+                    "slack"
+                  ]
+                }
+              ],
+              "low_interruption_level": [
                 {
                   "max_delay_seconds": 300,
                   "method_types": [
@@ -118878,7 +118910,23 @@
               "name": "Critical incidents must export follow-ups",
               "on_call_readiness": {
                 "enforcement": "advisory",
+                "high_interruption_level": [
+                  {
+                    "max_delay_seconds": 300,
+                    "method_types": [
+                      "slack"
+                    ]
+                  }
+                ],
                 "high_urgency": [
+                  {
+                    "max_delay_seconds": 300,
+                    "method_types": [
+                      "slack"
+                    ]
+                  }
+                ],
+                "low_interruption_level": [
                   {
                     "max_delay_seconds": 300,
                     "method_types": [
@@ -119295,7 +119343,23 @@
                 "name": "Critical incidents must export follow-ups",
                 "on_call_readiness": {
                   "enforcement": "advisory",
+                  "high_interruption_level": [
+                    {
+                      "max_delay_seconds": 300,
+                      "method_types": [
+                        "slack"
+                      ]
+                    }
+                  ],
                   "high_urgency": [
+                    {
+                      "max_delay_seconds": 300,
+                      "method_types": [
+                        "slack"
+                      ]
+                    }
+                  ],
+                  "low_interruption_level": [
                     {
                       "max_delay_seconds": 300,
                       "method_types": [
@@ -119719,7 +119783,23 @@
             "name": "Critical incidents must export follow-ups",
             "on_call_readiness": {
               "enforcement": "advisory",
+              "high_interruption_level": [
+                {
+                  "max_delay_seconds": 300,
+                  "method_types": [
+                    "slack"
+                  ]
+                }
+              ],
               "high_urgency": [
+                {
+                  "max_delay_seconds": 300,
+                  "method_types": [
+                    "slack"
+                  ]
+                }
+              ],
+              "low_interruption_level": [
                 {
                   "max_delay_seconds": 300,
                   "method_types": [
@@ -120078,7 +120158,23 @@
           "name": "Critical incidents must export follow-ups",
           "on_call_readiness": {
             "enforcement": "advisory",
+            "high_interruption_level": [
+              {
+                "max_delay_seconds": 300,
+                "method_types": [
+                  "slack"
+                ]
+              }
+            ],
             "high_urgency": [
+              {
+                "max_delay_seconds": 300,
+                "method_types": [
+                  "slack"
+                ]
+              }
+            ],
+            "low_interruption_level": [
               {
                 "max_delay_seconds": 300,
                 "method_types": [
@@ -120323,7 +120419,7 @@
             "type": "string"
           },
           "on_call_readiness": {
-            "$ref": "#/components/schemas/PolicyOnCallReadinessV2"
+            "$ref": "#/components/schemas/PolicyOnCallReadinessPayloadV2"
           },
           "policy_type": {
             "description": "Type of the policy, specifying what this applies to. Cannot be changed after the policy is created.",
@@ -120694,7 +120790,23 @@
             "name": "Critical incidents must export follow-ups",
             "on_call_readiness": {
               "enforcement": "advisory",
+              "high_interruption_level": [
+                {
+                  "max_delay_seconds": 300,
+                  "method_types": [
+                    "slack"
+                  ]
+                }
+              ],
               "high_urgency": [
+                {
+                  "max_delay_seconds": 300,
+                  "method_types": [
+                    "slack"
+                  ]
+                }
+              ],
+              "low_interruption_level": [
                 {
                   "max_delay_seconds": 300,
                   "method_types": [
@@ -121385,7 +121497,25 @@
       "PolicyFindingOnCallReadinessV2": {
         "description": "Set when policy_type is on_call_readiness. The user is always the one the finding is about.",
         "example": {
+          "high_interruption_level": [
+            {
+              "max_delay_seconds": 300,
+              "met": false,
+              "method_types": [
+                "slack"
+              ]
+            }
+          ],
           "high_urgency": [
+            {
+              "max_delay_seconds": 300,
+              "met": false,
+              "method_types": [
+                "slack"
+              ]
+            }
+          ],
+          "low_interruption_level": [
             {
               "max_delay_seconds": 300,
               "met": false,
@@ -121406,8 +121536,40 @@
           "user_id": "01FCNDV6P870EA6S7TK1DSYDG0"
         },
         "properties": {
+          "high_interruption_level": {
+            "description": "The high interruption level rules the policy requires, and whether each was met.",
+            "example": [
+              {
+                "max_delay_seconds": 300,
+                "met": false,
+                "method_types": [
+                  "slack"
+                ]
+              }
+            ],
+            "items": {
+              "$ref": "#/components/schemas/PolicyFindingReadinessRuleV2"
+            },
+            "type": "array"
+          },
           "high_urgency": {
-            "description": "The high urgency rules the policy requires, and whether each was met",
+            "description": "Deprecated: use high_interruption_level, which always has the same value.",
+            "example": [
+              {
+                "max_delay_seconds": 300,
+                "met": false,
+                "method_types": [
+                  "slack"
+                ]
+              }
+            ],
+            "items": {
+              "$ref": "#/components/schemas/PolicyFindingReadinessRuleV2"
+            },
+            "type": "array"
+          },
+          "low_interruption_level": {
+            "description": "The low interruption level rules the policy requires, and whether each was met.",
             "example": [
               {
                 "max_delay_seconds": 300,
@@ -121423,7 +121585,7 @@
             "type": "array"
           },
           "low_urgency": {
-            "description": "The low urgency rules the policy requires, and whether each was met",
+            "description": "Deprecated: use low_interruption_level, which always has the same value.",
             "example": [
               {
                 "max_delay_seconds": 300,
@@ -121447,7 +121609,9 @@
         "required": [
           "user_id",
           "high_urgency",
-          "low_urgency"
+          "low_urgency",
+          "high_interruption_level",
+          "low_interruption_level"
         ],
         "type": "object"
       },
@@ -121771,7 +121935,25 @@
           "id": "01G0J1EXE7AXZ2C93K61WBPYEH",
           "last_checked_at": "2021-08-17T13:28:57.801578Z",
           "on_call_readiness": {
+            "high_interruption_level": [
+              {
+                "max_delay_seconds": 300,
+                "met": false,
+                "method_types": [
+                  "slack"
+                ]
+              }
+            ],
             "high_urgency": [
+              {
+                "max_delay_seconds": 300,
+                "met": false,
+                "method_types": [
+                  "slack"
+                ]
+              }
+            ],
+            "low_interruption_level": [
               {
                 "max_delay_seconds": 300,
                 "met": false,
@@ -122073,7 +122255,25 @@
             "id": "01G0J1EXE7AXZ2C93K61WBPYEH",
             "last_checked_at": "2021-08-17T13:28:57.801578Z",
             "on_call_readiness": {
+              "high_interruption_level": [
+                {
+                  "max_delay_seconds": 300,
+                  "met": false,
+                  "method_types": [
+                    "slack"
+                  ]
+                }
+              ],
               "high_urgency": [
+                {
+                  "max_delay_seconds": 300,
+                  "met": false,
+                  "method_types": [
+                    "slack"
+                  ]
+                }
+              ],
+              "low_interruption_level": [
                 {
                   "max_delay_seconds": 300,
                   "met": false,
@@ -122204,7 +122404,25 @@
               "id": "01G0J1EXE7AXZ2C93K61WBPYEH",
               "last_checked_at": "2021-08-17T13:28:57.801578Z",
               "on_call_readiness": {
+                "high_interruption_level": [
+                  {
+                    "max_delay_seconds": 300,
+                    "met": false,
+                    "method_types": [
+                      "slack"
+                    ]
+                  }
+                ],
                 "high_urgency": [
+                  {
+                    "max_delay_seconds": 300,
+                    "met": false,
+                    "method_types": [
+                      "slack"
+                    ]
+                  }
+                ],
+                "low_interruption_level": [
                   {
                     "max_delay_seconds": 300,
                     "met": false,
@@ -122325,7 +122543,25 @@
                 "id": "01G0J1EXE7AXZ2C93K61WBPYEH",
                 "last_checked_at": "2021-08-17T13:28:57.801578Z",
                 "on_call_readiness": {
+                  "high_interruption_level": [
+                    {
+                      "max_delay_seconds": 300,
+                      "met": false,
+                      "method_types": [
+                        "slack"
+                      ]
+                    }
+                  ],
                   "high_urgency": [
+                    {
+                      "max_delay_seconds": 300,
+                      "met": false,
+                      "method_types": [
+                        "slack"
+                      ]
+                    }
+                  ],
+                  "low_interruption_level": [
                     {
                       "max_delay_seconds": 300,
                       "met": false,
@@ -122453,7 +122689,25 @@
             "id": "01G0J1EXE7AXZ2C93K61WBPYEH",
             "last_checked_at": "2021-08-17T13:28:57.801578Z",
             "on_call_readiness": {
+              "high_interruption_level": [
+                {
+                  "max_delay_seconds": 300,
+                  "met": false,
+                  "method_types": [
+                    "slack"
+                  ]
+                }
+              ],
               "high_urgency": [
+                {
+                  "max_delay_seconds": 300,
+                  "met": false,
+                  "method_types": [
+                    "slack"
+                  ]
+                }
+              ],
+              "low_interruption_level": [
                 {
                   "max_delay_seconds": 300,
                   "met": false,
@@ -122579,7 +122833,25 @@
             "id": "01G0J1EXE7AXZ2C93K61WBPYEH",
             "last_checked_at": "2021-08-17T13:28:57.801578Z",
             "on_call_readiness": {
+              "high_interruption_level": [
+                {
+                  "max_delay_seconds": 300,
+                  "met": false,
+                  "method_types": [
+                    "slack"
+                  ]
+                }
+              ],
               "high_urgency": [
+                {
+                  "max_delay_seconds": 300,
+                  "met": false,
+                  "method_types": [
+                    "slack"
+                  ]
+                }
+              ],
+              "low_interruption_level": [
                 {
                   "max_delay_seconds": 300,
                   "met": false,
@@ -122868,11 +123140,27 @@
         ],
         "type": "object"
       },
-      "PolicyOnCallReadinessV2": {
+      "PolicyOnCallReadinessPayloadV2": {
         "description": "Set when policy_type is on_call_readiness. The assignee is always the user the finding is about and cannot be configured.",
         "example": {
           "enforcement": "advisory",
+          "high_interruption_level": [
+            {
+              "max_delay_seconds": 300,
+              "method_types": [
+                "slack"
+              ]
+            }
+          ],
           "high_urgency": [
+            {
+              "max_delay_seconds": 300,
+              "method_types": [
+                "slack"
+              ]
+            }
+          ],
+          "low_interruption_level": [
             {
               "max_delay_seconds": 300,
               "method_types": [
@@ -122899,7 +123187,38 @@
             "example": "advisory",
             "type": "string"
           },
+          "high_interruption_level": {
+            "description": "The high interruption level rules the policy requires.",
+            "example": [
+              {
+                "max_delay_seconds": 300,
+                "method_types": [
+                  "slack"
+                ]
+              }
+            ],
+            "items": {
+              "$ref": "#/components/schemas/PolicyReadinessRuleV2"
+            },
+            "type": "array"
+          },
           "high_urgency": {
+            "description": "Deprecated: use high_interruption_level, which always has the same value.",
+            "example": [
+              {
+                "max_delay_seconds": 300,
+                "method_types": [
+                  "slack"
+                ]
+              }
+            ],
+            "items": {
+              "$ref": "#/components/schemas/PolicyReadinessRuleV2"
+            },
+            "type": "array"
+          },
+          "low_interruption_level": {
+            "description": "The low interruption level rules the policy requires.",
             "example": [
               {
                 "max_delay_seconds": 300,
@@ -122914,6 +123233,7 @@
             "type": "array"
           },
           "low_urgency": {
+            "description": "Deprecated: use low_interruption_level, which always has the same value.",
             "example": [
               {
                 "max_delay_seconds": 300,
@@ -122928,6 +123248,120 @@
             "type": "array"
           }
         },
+        "type": "object"
+      },
+      "PolicyOnCallReadinessV2": {
+        "description": "Set when policy_type is on_call_readiness. The assignee is always the user the finding is about and cannot be configured.",
+        "example": {
+          "enforcement": "advisory",
+          "high_interruption_level": [
+            {
+              "max_delay_seconds": 300,
+              "method_types": [
+                "slack"
+              ]
+            }
+          ],
+          "high_urgency": [
+            {
+              "max_delay_seconds": 300,
+              "method_types": [
+                "slack"
+              ]
+            }
+          ],
+          "low_interruption_level": [
+            {
+              "max_delay_seconds": 300,
+              "method_types": [
+                "slack"
+              ]
+            }
+          ],
+          "low_urgency": [
+            {
+              "max_delay_seconds": 300,
+              "method_types": [
+                "slack"
+              ]
+            }
+          ]
+        },
+        "properties": {
+          "enforcement": {
+            "description": "advisory reports only; blocking also prevents users saving non-compliant notification rules. Defaults to advisory.",
+            "enum": [
+              "advisory",
+              "blocking"
+            ],
+            "example": "advisory",
+            "type": "string"
+          },
+          "high_interruption_level": {
+            "description": "The high interruption level rules the policy requires.",
+            "example": [
+              {
+                "max_delay_seconds": 300,
+                "method_types": [
+                  "slack"
+                ]
+              }
+            ],
+            "items": {
+              "$ref": "#/components/schemas/PolicyReadinessRuleV2"
+            },
+            "type": "array"
+          },
+          "high_urgency": {
+            "description": "Deprecated: use high_interruption_level, which always has the same value.",
+            "example": [
+              {
+                "max_delay_seconds": 300,
+                "method_types": [
+                  "slack"
+                ]
+              }
+            ],
+            "items": {
+              "$ref": "#/components/schemas/PolicyReadinessRuleV2"
+            },
+            "type": "array"
+          },
+          "low_interruption_level": {
+            "description": "The low interruption level rules the policy requires.",
+            "example": [
+              {
+                "max_delay_seconds": 300,
+                "method_types": [
+                  "slack"
+                ]
+              }
+            ],
+            "items": {
+              "$ref": "#/components/schemas/PolicyReadinessRuleV2"
+            },
+            "type": "array"
+          },
+          "low_urgency": {
+            "description": "Deprecated: use low_interruption_level, which always has the same value.",
+            "example": [
+              {
+                "max_delay_seconds": 300,
+                "method_types": [
+                  "slack"
+                ]
+              }
+            ],
+            "items": {
+              "$ref": "#/components/schemas/PolicyReadinessRuleV2"
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "high_interruption_level",
+          "low_interruption_level"
+        ],
         "type": "object"
       },
       "PolicyPostMortemPayloadV2": {
@@ -123556,7 +123990,23 @@
           "name": "Critical incidents must export follow-ups",
           "on_call_readiness": {
             "enforcement": "advisory",
+            "high_interruption_level": [
+              {
+                "max_delay_seconds": 300,
+                "method_types": [
+                  "slack"
+                ]
+              }
+            ],
             "high_urgency": [
+              {
+                "max_delay_seconds": 300,
+                "method_types": [
+                  "slack"
+                ]
+              }
+            ],
+            "low_interruption_level": [
               {
                 "max_delay_seconds": 300,
                 "method_types": [
@@ -201311,7 +201761,23 @@
                       "name": "Critical incidents must export follow-ups",
                       "on_call_readiness": {
                         "enforcement": "advisory",
+                        "high_interruption_level": [
+                          {
+                            "max_delay_seconds": 300,
+                            "method_types": [
+                              "slack"
+                            ]
+                          }
+                        ],
                         "high_urgency": [
+                          {
+                            "max_delay_seconds": 300,
+                            "method_types": [
+                              "slack"
+                            ]
+                          }
+                        ],
+                        "low_interruption_level": [
                           {
                             "max_delay_seconds": 300,
                             "method_types": [
@@ -201818,7 +202284,23 @@
                 "name": "Critical incidents must export follow-ups",
                 "on_call_readiness": {
                   "enforcement": "advisory",
+                  "high_interruption_level": [
+                    {
+                      "max_delay_seconds": 300,
+                      "method_types": [
+                        "slack"
+                      ]
+                    }
+                  ],
                   "high_urgency": [
+                    {
+                      "max_delay_seconds": 300,
+                      "method_types": [
+                        "slack"
+                      ]
+                    }
+                  ],
+                  "low_interruption_level": [
                     {
                       "max_delay_seconds": 300,
                       "method_types": [
@@ -202228,7 +202710,23 @@
                     "name": "Critical incidents must export follow-ups",
                     "on_call_readiness": {
                       "enforcement": "advisory",
+                      "high_interruption_level": [
+                        {
+                          "max_delay_seconds": 300,
+                          "method_types": [
+                            "slack"
+                          ]
+                        }
+                      ],
                       "high_urgency": [
+                        {
+                          "max_delay_seconds": 300,
+                          "method_types": [
+                            "slack"
+                          ]
+                        }
+                      ],
+                      "low_interruption_level": [
                         {
                           "max_delay_seconds": 300,
                           "method_types": [
@@ -202985,7 +203483,23 @@
                     "name": "Critical incidents must export follow-ups",
                     "on_call_readiness": {
                       "enforcement": "advisory",
+                      "high_interruption_level": [
+                        {
+                          "max_delay_seconds": 300,
+                          "method_types": [
+                            "slack"
+                          ]
+                        }
+                      ],
                       "high_urgency": [
+                        {
+                          "max_delay_seconds": 300,
+                          "method_types": [
+                            "slack"
+                          ]
+                        }
+                      ],
+                      "low_interruption_level": [
                         {
                           "max_delay_seconds": 300,
                           "method_types": [
@@ -203505,7 +204019,23 @@
                 "name": "Critical incidents must export follow-ups",
                 "on_call_readiness": {
                   "enforcement": "advisory",
+                  "high_interruption_level": [
+                    {
+                      "max_delay_seconds": 300,
+                      "method_types": [
+                        "slack"
+                      ]
+                    }
+                  ],
                   "high_urgency": [
+                    {
+                      "max_delay_seconds": 300,
+                      "method_types": [
+                        "slack"
+                      ]
+                    }
+                  ],
+                  "low_interruption_level": [
                     {
                       "max_delay_seconds": 300,
                       "method_types": [
@@ -203915,7 +204445,23 @@
                     "name": "Critical incidents must export follow-ups",
                     "on_call_readiness": {
                       "enforcement": "advisory",
+                      "high_interruption_level": [
+                        {
+                          "max_delay_seconds": 300,
+                          "method_types": [
+                            "slack"
+                          ]
+                        }
+                      ],
                       "high_urgency": [
+                        {
+                          "max_delay_seconds": 300,
+                          "method_types": [
+                            "slack"
+                          ]
+                        }
+                      ],
+                      "low_interruption_level": [
                         {
                           "max_delay_seconds": 300,
                           "method_types": [
@@ -204249,7 +204795,25 @@
                       "id": "01G0J1EXE7AXZ2C93K61WBPYEH",
                       "last_checked_at": "2021-08-17T13:28:57.801578Z",
                       "on_call_readiness": {
+                        "high_interruption_level": [
+                          {
+                            "max_delay_seconds": 300,
+                            "met": false,
+                            "method_types": [
+                              "slack"
+                            ]
+                          }
+                        ],
                         "high_urgency": [
+                          {
+                            "max_delay_seconds": 300,
+                            "met": false,
+                            "method_types": [
+                              "slack"
+                            ]
+                          }
+                        ],
+                        "low_interruption_level": [
                           {
                             "max_delay_seconds": 300,
                             "met": false,
@@ -204540,7 +205104,25 @@
                     "id": "01G0J1EXE7AXZ2C93K61WBPYEH",
                     "last_checked_at": "2021-08-17T13:28:57.801578Z",
                     "on_call_readiness": {
+                      "high_interruption_level": [
+                        {
+                          "max_delay_seconds": 300,
+                          "met": false,
+                          "method_types": [
+                            "slack"
+                          ]
+                        }
+                      ],
                       "high_urgency": [
+                        {
+                          "max_delay_seconds": 300,
+                          "met": false,
+                          "method_types": [
+                            "slack"
+                          ]
+                        }
+                      ],
+                      "low_interruption_level": [
                         {
                           "max_delay_seconds": 300,
                           "met": false,
@@ -204843,7 +205425,25 @@
                     "id": "01G0J1EXE7AXZ2C93K61WBPYEH",
                     "last_checked_at": "2021-08-17T13:28:57.801578Z",
                     "on_call_readiness": {
+                      "high_interruption_level": [
+                        {
+                          "max_delay_seconds": 300,
+                          "met": false,
+                          "method_types": [
+                            "slack"
+                          ]
+                        }
+                      ],
                       "high_urgency": [
+                        {
+                          "max_delay_seconds": 300,
+                          "met": false,
+                          "method_types": [
+                            "slack"
+                          ]
+                        }
+                      ],
+                      "low_interruption_level": [
                         {
                           "max_delay_seconds": 300,
                           "met": false,
@@ -205133,7 +205733,25 @@
                     "id": "01G0J1EXE7AXZ2C93K61WBPYEH",
                     "last_checked_at": "2021-08-17T13:28:57.801578Z",
                     "on_call_readiness": {
+                      "high_interruption_level": [
+                        {
+                          "max_delay_seconds": 300,
+                          "met": false,
+                          "method_types": [
+                            "slack"
+                          ]
+                        }
+                      ],
                       "high_urgency": [
+                        {
+                          "max_delay_seconds": 300,
+                          "met": false,
+                          "method_types": [
+                            "slack"
+                          ]
+                        }
+                      ],
+                      "low_interruption_level": [
                         {
                           "max_delay_seconds": 300,
                           "met": false,

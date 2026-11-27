@@ -17,7 +17,15 @@ namespace IncidentIo.Models
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>advisory reports only; blocking also prevents users saving non-compliant notification rules. Defaults to advisory.</summary>
         public global::IncidentIo.Models.PolicyOnCallReadinessV2Enforcement? Enforcement { get; set; }
-        /// <summary>The high_urgency property</summary>
+        /// <summary>The high interruption level rules the policy requires.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<global::IncidentIo.Models.PolicyReadinessRuleV2>? HighInterruptionLevel { get; set; }
+#nullable restore
+#else
+        public List<global::IncidentIo.Models.PolicyReadinessRuleV2> HighInterruptionLevel { get; set; }
+#endif
+        /// <summary>Deprecated: use high_interruption_level, which always has the same value.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<global::IncidentIo.Models.PolicyReadinessRuleV2>? HighUrgency { get; set; }
@@ -25,7 +33,15 @@ namespace IncidentIo.Models
 #else
         public List<global::IncidentIo.Models.PolicyReadinessRuleV2> HighUrgency { get; set; }
 #endif
-        /// <summary>The low_urgency property</summary>
+        /// <summary>The low interruption level rules the policy requires.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<global::IncidentIo.Models.PolicyReadinessRuleV2>? LowInterruptionLevel { get; set; }
+#nullable restore
+#else
+        public List<global::IncidentIo.Models.PolicyReadinessRuleV2> LowInterruptionLevel { get; set; }
+#endif
+        /// <summary>Deprecated: use low_interruption_level, which always has the same value.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<global::IncidentIo.Models.PolicyReadinessRuleV2>? LowUrgency { get; set; }
@@ -59,7 +75,9 @@ namespace IncidentIo.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "enforcement", n => { Enforcement = n.GetEnumValue<global::IncidentIo.Models.PolicyOnCallReadinessV2Enforcement>(); } },
+                { "high_interruption_level", n => { HighInterruptionLevel = n.GetCollectionOfObjectValues<global::IncidentIo.Models.PolicyReadinessRuleV2>(global::IncidentIo.Models.PolicyReadinessRuleV2.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "high_urgency", n => { HighUrgency = n.GetCollectionOfObjectValues<global::IncidentIo.Models.PolicyReadinessRuleV2>(global::IncidentIo.Models.PolicyReadinessRuleV2.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "low_interruption_level", n => { LowInterruptionLevel = n.GetCollectionOfObjectValues<global::IncidentIo.Models.PolicyReadinessRuleV2>(global::IncidentIo.Models.PolicyReadinessRuleV2.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "low_urgency", n => { LowUrgency = n.GetCollectionOfObjectValues<global::IncidentIo.Models.PolicyReadinessRuleV2>(global::IncidentIo.Models.PolicyReadinessRuleV2.CreateFromDiscriminatorValue)?.AsList(); } },
             };
         }
@@ -71,7 +89,9 @@ namespace IncidentIo.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteEnumValue<global::IncidentIo.Models.PolicyOnCallReadinessV2Enforcement>("enforcement", Enforcement);
+            writer.WriteCollectionOfObjectValues<global::IncidentIo.Models.PolicyReadinessRuleV2>("high_interruption_level", HighInterruptionLevel);
             writer.WriteCollectionOfObjectValues<global::IncidentIo.Models.PolicyReadinessRuleV2>("high_urgency", HighUrgency);
+            writer.WriteCollectionOfObjectValues<global::IncidentIo.Models.PolicyReadinessRuleV2>("low_interruption_level", LowInterruptionLevel);
             writer.WriteCollectionOfObjectValues<global::IncidentIo.Models.PolicyReadinessRuleV2>("low_urgency", LowUrgency);
             writer.WriteAdditionalData(AdditionalData);
         }
