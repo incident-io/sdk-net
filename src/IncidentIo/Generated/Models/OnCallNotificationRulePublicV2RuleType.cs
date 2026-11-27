@@ -3,7 +3,7 @@ using System.Runtime.Serialization;
 using System;
 namespace IncidentIo.Models
 {
-    /// <summary>The urgency level this rule applies to</summary>
+    /// <summary>Deprecated: use interruption_level, which always has the same value.</summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public enum OnCallNotificationRulePublicV2RuleType
     {

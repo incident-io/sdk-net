@@ -32,6 +32,8 @@ namespace IncidentIo.Models
 #else
         public string Id { get; set; }
 #endif
+        /// <summary>The interruption level of the pages this rule applies to: high or low.</summary>
+        public global::IncidentIo.Models.OnCallNotificationRulePublicV2InterruptionLevel? InterruptionLevel { get; set; }
         /// <summary>The method_target property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -50,7 +52,7 @@ namespace IncidentIo.Models
 #else
         public global::IncidentIo.Models.OnCallNotificationRulePhoneDetailsPublicV2 Phone { get; set; }
 #endif
-        /// <summary>The urgency level this rule applies to</summary>
+        /// <summary>Deprecated: use interruption_level, which always has the same value.</summary>
         public global::IncidentIo.Models.OnCallNotificationRulePublicV2RuleType? RuleType { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::IncidentIo.Models.OnCallNotificationRulePublicV2"/> and sets the default values.
@@ -80,6 +82,7 @@ namespace IncidentIo.Models
                 { "app", n => { App = n.GetObjectValue<global::IncidentIo.Models.OnCallNotificationRuleAppDetailsPublicV2>(global::IncidentIo.Models.OnCallNotificationRuleAppDetailsPublicV2.CreateFromDiscriminatorValue); } },
                 { "delay_seconds", n => { DelaySeconds = n.GetLongValue(); } },
                 { "id", n => { Id = n.GetStringValue(); } },
+                { "interruption_level", n => { InterruptionLevel = n.GetEnumValue<global::IncidentIo.Models.OnCallNotificationRulePublicV2InterruptionLevel>(); } },
                 { "method_target", n => { MethodTarget = n.GetObjectValue<global::IncidentIo.Models.OnCallNotificationRuleMethodTargetPublicV2>(global::IncidentIo.Models.OnCallNotificationRuleMethodTargetPublicV2.CreateFromDiscriminatorValue); } },
                 { "method_type", n => { MethodType = n.GetEnumValue<global::IncidentIo.Models.OnCallNotificationRulePublicV2MethodType>(); } },
                 { "phone", n => { Phone = n.GetObjectValue<global::IncidentIo.Models.OnCallNotificationRulePhoneDetailsPublicV2>(global::IncidentIo.Models.OnCallNotificationRulePhoneDetailsPublicV2.CreateFromDiscriminatorValue); } },
@@ -96,6 +99,7 @@ namespace IncidentIo.Models
             writer.WriteObjectValue<global::IncidentIo.Models.OnCallNotificationRuleAppDetailsPublicV2>("app", App);
             writer.WriteLongValue("delay_seconds", DelaySeconds);
             writer.WriteStringValue("id", Id);
+            writer.WriteEnumValue<global::IncidentIo.Models.OnCallNotificationRulePublicV2InterruptionLevel>("interruption_level", InterruptionLevel);
             writer.WriteObjectValue<global::IncidentIo.Models.OnCallNotificationRuleMethodTargetPublicV2>("method_target", MethodTarget);
             writer.WriteEnumValue<global::IncidentIo.Models.OnCallNotificationRulePublicV2MethodType>("method_type", MethodType);
             writer.WriteObjectValue<global::IncidentIo.Models.OnCallNotificationRulePhoneDetailsPublicV2>("phone", Phone);

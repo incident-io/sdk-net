@@ -34,7 +34,7 @@ namespace IncidentIo.V2.Users.Item.NotificationRules
         {
         }
         /// <summary>
-        /// List notification rules for a user. Rules define how and when a user is notified for on-call pages. Only includes high_urgency and low_urgency rules; shift_changes rules are not returned.
+        /// List notification rules for a user. Rules define how and when a user is notified for on-call pages. Each rule applies to pages at one interruption level, high or low. Only includes rules for pages; shift_changes rules are not returned.
         /// </summary>
         /// <returns>A <see cref="global::IncidentIo.Models.UsersListNotificationRulesResultV2"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -81,7 +81,7 @@ namespace IncidentIo.V2.Users.Item.NotificationRules
             return await RequestAdapter.SendAsync<global::IncidentIo.Models.UsersListNotificationRulesResultV2>(requestInfo, global::IncidentIo.Models.UsersListNotificationRulesResultV2.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// List notification rules for a user. Rules define how and when a user is notified for on-call pages. Only includes high_urgency and low_urgency rules; shift_changes rules are not returned.
+        /// List notification rules for a user. Rules define how and when a user is notified for on-call pages. Each rule applies to pages at one interruption level, high or low. Only includes rules for pages; shift_changes rules are not returned.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

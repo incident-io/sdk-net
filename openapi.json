@@ -115397,6 +115397,7 @@
           },
           "delay_seconds": 0,
           "id": "01FCNDV6P870EA6S7TK1DSYDG0",
+          "interruption_level": "high",
           "method_target": {
             "all": {},
             "specific": {
@@ -115427,6 +115428,15 @@
             "example": "01FCNDV6P870EA6S7TK1DSYDG0",
             "type": "string"
           },
+          "interruption_level": {
+            "description": "The interruption level of the pages this rule applies to: high or low.",
+            "enum": [
+              "high",
+              "low"
+            ],
+            "example": "high",
+            "type": "string"
+          },
           "method_target": {
             "$ref": "#/components/schemas/OnCallNotificationRuleMethodTargetPublicV2"
           },
@@ -115448,7 +115458,7 @@
             "$ref": "#/components/schemas/OnCallNotificationRulePhoneDetailsPublicV2"
           },
           "rule_type": {
-            "description": "The urgency level this rule applies to",
+            "description": "Deprecated: use interruption_level, which always has the same value.",
             "enum": [
               "high_urgency",
               "low_urgency"
@@ -115462,7 +115472,8 @@
           "id",
           "method_type",
           "method_target",
-          "rule_type"
+          "rule_type",
+          "interruption_level"
         ],
         "type": "object"
       },
@@ -133671,6 +133682,7 @@
               },
               "delay_seconds": 0,
               "id": "01FCNDV6P870EA6S7TK1DSYDG0",
+              "interruption_level": "high",
               "method_target": {
                 "all": {},
                 "specific": {
@@ -133695,6 +133707,7 @@
                 },
                 "delay_seconds": 0,
                 "id": "01FCNDV6P870EA6S7TK1DSYDG0",
+                "interruption_level": "high",
                 "method_target": {
                   "all": {},
                   "specific": {
@@ -218243,7 +218256,7 @@
     },
     "/v2/users/{user_id}/notification_rules": {
       "get": {
-        "description": "List notification rules for a user. Rules define how and when a user is notified for on-call pages. Only includes high_urgency and low_urgency rules; shift_changes rules are not returned.",
+        "description": "List notification rules for a user. Rules define how and when a user is notified for on-call pages. Each rule applies to pages at one interruption level, high or low. Only includes rules for pages; shift_changes rules are not returned.",
         "operationId": "Users V2#ListNotificationRules",
         "parameters": [
           {
@@ -218271,6 +218284,7 @@
                       },
                       "delay_seconds": 0,
                       "id": "01FCNDV6P870EA6S7TK1DSYDG0",
+                      "interruption_level": "high",
                       "method_target": {
                         "all": {},
                         "specific": {
